@@ -826,9 +826,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg>
                         South Shore News
                     </a>
-                    <a href="mailto:justin@justinevans.net" class="hero-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
-                        Email
+                    <a href="https://votejustinevans.com" class="hero-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        Campaign
                     </a>
                 </div>
             </div>
@@ -883,7 +883,7 @@
                         <h3>Whitman Select Board</h3>
                     </div>
                     <div class="work-card-body">
-                        <p>Three-term elected member serving since 2019. Led efforts on Community Preservation Act adoption, school agreement reform, and municipal energy aggregation. Focused on fiscal responsibility, infrastructure investment, and transparent government.</p>
+                        <p>Three-term elected member serving since 2019. Led efforts on Community Preservation Act adoption, school agreement reform, and municipal energy aggregation. Focused on fiscal sustainability, economic development, and public communications.</p>
                         <a href="https://secure.actblue.com/donate/votejustinevans" class="work-card-link">
                             Support the campaign
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -925,10 +925,10 @@
             <div class="section-header-left">
                 <div>
                     <p class="section-label fade-in">South Shore News</p>
-                    <h2 class="section-title fade-in">Latest from Whitman</h2>
+                    <h2 class="section-title fade-in">Latest from the South Shore</h2>
                 </div>
-                <a href="https://www.southshore.news/t/whitman" class="section-link fade-in">
-                    View all Whitman news
+                <a href="https://www.southshore.news" class="section-link fade-in">
+                    View all news
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
@@ -962,7 +962,7 @@
                     
                     <p>In 2024, I founded <a href="https://southshore.news">South Shore News</a> to solve a problem I saw in local government: important decisions being made without public awareness. Using AI tools to process meeting transcripts and generate coverage, we're bringing transparency to 19 communities that traditional media has largely abandoned.</p>
                     
-                    <p>I live in Whitman with my wife and daughter. When I'm not at work or in a town meeting, you'll find me cooking, working on home electrification projects, or researching my Nova Scotia ancestry.</p>
+                    <p>I live in Whitman with my wife and daughter. When I'm not at work or in a town meeting, you'll find me cooking, working on home electrification projects, or walking my dog.</p>
                 </div>
             </div>
         </div>
@@ -976,12 +976,7 @@
                 <h2 class="section-title fade-in">Connect</h2>
             </div>
 
-            <div class="contact-grid">
-                <a href="mailto:justin@justinevans.net" class="contact-card fade-in">
-                    <div class="contact-icon">✉️</div>
-                    <h4>Email</h4>
-                    <p>justin@justinevans.net</p>
-                </a>
+            <div class="contact-grid" style="grid-template-columns: repeat(3, 1fr);">
                 <a href="https://www.linkedin.com/in/evansjustin" class="contact-card fade-in">
                     <div class="contact-icon">💼</div>
                     <h4>LinkedIn</h4>
@@ -992,7 +987,7 @@
                     <h4>South Shore News</h4>
                     <p>2,000+ subscribers</p>
                 </a>
-                <a href="https://secure.actblue.com/donate/votejustinevans" class="contact-card fade-in">
+                <a href="https://votejustinevans.com" class="contact-card fade-in">
                     <div class="contact-icon">🗳️</div>
                     <h4>Campaign</h4>
                     <p>VoteJustinEvans.com</p>
@@ -1109,7 +1104,7 @@
             }
         }
 
-        // Fetch and render news (filter for Whitman-related)
+        // Fetch and render news (all South Shore)
         async function loadNews() {
             const container = document.getElementById('news-list');
             try {
@@ -1118,16 +1113,7 @@
                 
                 if (data.status !== 'ok') throw new Error('Feed error');
                 
-                // Filter for Whitman-related posts, fallback to all if none found
-                let posts = data.items.filter(post => 
-                    post.title.toLowerCase().includes('whitman') || 
-                    post.description.toLowerCase().includes('whitman')
-                );
-                if (posts.length < 3) {
-                    posts = data.items.slice(0, 5);
-                } else {
-                    posts = posts.slice(0, 5);
-                }
+                const posts = data.items.slice(0, 5);
                 
                 container.innerHTML = posts.map(post => `
                     <a href="${post.link}" class="news-item fade-in visible" target="_blank" rel="noopener">
@@ -1142,11 +1128,11 @@
             } catch (error) {
                 console.error('News feed error:', error);
                 container.innerHTML = `
-                    <a href="https://www.southshore.news/t/whitman" class="news-item fade-in visible">
+                    <a href="https://www.southshore.news" class="news-item fade-in visible">
                         <span class="news-date">—</span>
                         <div class="news-content">
                             <h4>Visit South Shore News</h4>
-                            <p>Read the latest Whitman coverage</p>
+                            <p>Read the latest South Shore coverage</p>
                         </div>
                         <span class="news-source">South Shore News</span>
                     </a>
