@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justin Evans — Energy, News, Public Service</title>
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://justinevans.net/">
+    <meta property="og:title" content="Justin Evans — Energy, News, Public Service">
+    <meta property="og:description" content="Energy regulator, local news founder, and elected official. Working at the intersection of infrastructure, technology, and civic engagement on Massachusetts' South Shore.">
+    <meta property="og:image" content="https://justinevans.net/headshot.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Justin Evans — Energy, News, Public Service">
+    <meta name="twitter:description" content="Energy regulator, local news founder, and elected official on Massachusetts' South Shore.">
+    <meta name="twitter:image" content="https://justinevans.net/headshot.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -428,6 +445,132 @@
             background: var(--warm-white);
         }
 
+        /* In Action / Gallery Section */
+        .gallery {
+            background: var(--warm-white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(26, 39, 68, 0.9));
+            color: white;
+        }
+
+        .gallery-caption h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: var(--navy);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter .section-label {
+            color: var(--amber-light);
+        }
+
+        .newsletter h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--amber);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 1.5rem;
+            background: var(--amber);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--amber-light);
+        }
+
+        .newsletter-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1rem;
+        }
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -585,16 +728,16 @@
 
         /* Contact Section */
         .contact {
-            background: var(--navy);
-            color: white;
+            background: var(--cream);
+            color: var(--text-dark);
         }
 
         .contact .section-label {
-            color: var(--amber-light);
+            color: var(--amber);
         }
 
         .contact .section-title {
-            color: white;
+            color: var(--navy);
         }
 
         .contact-grid {
@@ -605,8 +748,8 @@
         }
 
         .contact-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--warm-white);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             padding: 1.75rem;
             text-align: center;
@@ -614,8 +757,8 @@
         }
 
         .contact-card:hover {
-            background: rgba(255, 255, 255, 0.08);
             border-color: var(--amber);
+            box-shadow: 0 8px 20px rgba(26, 39, 68, 0.08);
             transform: translateY(-3px);
         }
 
@@ -628,20 +771,20 @@
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
-            color: white;
+            color: var(--navy);
         }
 
         .contact-card p {
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-muted);
         }
 
         .contact-card a {
-            color: white;
+            color: var(--navy);
         }
 
         .contact-card a:hover {
-            color: var(--amber-light);
+            color: var(--amber);
         }
 
         /* Footer */
@@ -698,7 +841,8 @@
             }
 
             .work-grid,
-            .blog-grid {
+            .blog-grid,
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -737,6 +881,10 @@
 
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
             }
 
             .footer-container {
@@ -790,6 +938,7 @@
             <a href="#" class="nav-logo">JE<span>_</span></a>
             <div class="nav-links">
                 <a href="#work">Work</a>
+                <a href="#gallery">Photos</a>
                 <a href="#blog">Blog</a>
                 <a href="#news">News</a>
                 <a href="#about">About</a>
@@ -829,6 +978,10 @@
                     <a href="https://votejustinevans.com" class="hero-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         Campaign
+                    </a>
+                    <a href="mailto:justin@justinevans.net" class="hero-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+                        Email
                     </a>
                 </div>
             </div>
@@ -888,6 +1041,40 @@
                             Support the campaign
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- In Action Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label fade-in">In Action</p>
+                <h2 class="section-title fade-in">Out in the Community</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="speaking-napsr.jpg" alt="Justin Evans presenting at NAPSR conference">
+                    <div class="gallery-caption">
+                        <h4>NAPSR National Meeting</h4>
+                        <p>Presenting on pipeline safety</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="speaking-rally.jpg" alt="Justin Evans speaking at rally">
+                    <div class="gallery-caption">
+                        <h4>Community Rally</h4>
+                        <p>Speaking out on local issues</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="lt-governor.jpg" alt="Justin Evans with Lt. Governor Kim Driscoll">
+                    <div class="gallery-caption">
+                        <h4>With Lt. Gov. Driscoll</h4>
+                        <p>Healey-Driscoll campaign event</p>
                     </div>
                 </div>
             </div>
@@ -976,7 +1163,12 @@
                 <h2 class="section-title fade-in">Connect</h2>
             </div>
 
-            <div class="contact-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="contact-grid">
+                <a href="mailto:justin@justinevans.net" class="contact-card fade-in">
+                    <div class="contact-icon">✉️</div>
+                    <h4>Email</h4>
+                    <p>justin@justinevans.net</p>
+                </a>
                 <a href="https://www.linkedin.com/in/evansjustin" class="contact-card fade-in">
                     <div class="contact-icon">💼</div>
                     <h4>LinkedIn</h4>
@@ -996,10 +1188,24 @@
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <p class="section-label fade-in">Stay Informed</p>
+            <h2 class="fade-in">Subscribe to South Shore News</h2>
+            <p class="fade-in">Hyperlocal coverage of municipal government across 19 South Shore communities. AI-powered transparency for your town.</p>
+            <form class="newsletter-form fade-in" action="https://southshore.news/subscribe" method="get" target="_blank">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="newsletter-note fade-in">Join 2,000+ subscribers. Free newsletter.</p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <p>© 2025 Justin Evans</p>
+            <p>© 2026 Justin Evans</p>
             <div class="footer-links">
                 <a href="https://southshore.news">South Shore News</a>
                 <a href="https://votejustinevans.com">Campaign</a>
