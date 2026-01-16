@@ -760,6 +760,16 @@
             gap: 1rem;
         }
 
+        .loading-card {
+            opacity: 0.6;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.3; }
+        }
+
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -873,7 +883,7 @@
                         <h3>Whitman Select Board</h3>
                     </div>
                     <div class="work-card-body">
-                        <p>Three-term elected member serving since 2019. Led efforts on Community Preservation Act adoption, economic development, and municipal energy aggregation. Focused on fiscal longevity, infrastructure investment, and transparent government.</p>
+                        <p>Three-term elected member serving since 2019. Led efforts on Community Preservation Act adoption, school agreement reform, and municipal energy aggregation. Focused on fiscal responsibility, infrastructure investment, and transparent government.</p>
                         <a href="https://secure.actblue.com/donate/votejustinevans" class="work-card-link">
                             Support the campaign
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -898,42 +908,13 @@
                 </a>
             </div>
 
-            <div class="blog-grid">
-                <a href="https://votejustinevans.com/blog/2026/1/1/december-whitman-updates" class="blog-card fade-in">
-                    <div class="blog-card-image">📋</div>
+            <div class="blog-grid" id="blog-grid">
+                <div class="blog-card fade-in loading-card">
+                    <div class="blog-card-image">⏳</div>
                     <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <span class="blog-card-category">Updates</span>
-                            <span class="blog-card-date">Jan 1, 2026</span>
-                        </div>
-                        <h3>December Whitman Updates</h3>
-                        <p>Monthly recap of Select Board activity, town business, and community news from December.</p>
+                        <p>Loading posts...</p>
                     </div>
-                </a>
-
-                <a href="https://votejustinevans.com/blog/2025/3/24/the-perfect-storm-rising-costs-and-revenue-caps-cripple-town-budgets" class="blog-card fade-in">
-                    <div class="blog-card-image">⚡</div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <span class="blog-card-category">Analysis</span>
-                            <span class="blog-card-date">Mar 24, 2025</span>
-                        </div>
-                        <h3>The Perfect Storm: Rising Costs and Revenue Caps</h3>
-                        <p>How inflation and Prop 2½ constraints are creating budget crises across Massachusetts towns.</p>
-                    </div>
-                </a>
-
-                <a href="https://votejustinevans.com/blog/2025/11/29/november-whitman-updates" class="blog-card fade-in">
-                    <div class="blog-card-image">🏛️</div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <span class="blog-card-category">Updates</span>
-                            <span class="blog-card-date">Nov 29, 2025</span>
-                        </div>
-                        <h3>November Whitman Updates</h3>
-                        <p>Monthly recap covering school budget developments, town operations, and community events.</p>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -952,51 +933,15 @@
                 </a>
             </div>
 
-            <div class="news-list">
-                <a href="https://www.southshore.news/p/no-sale-for-park-ave-school-in-whitman" class="news-item fade-in">
-                    <span class="news-date">Jan 5, 2026</span>
+            <div class="news-list" id="news-list">
+                <div class="news-item fade-in loading-card">
+                    <span class="news-date">...</span>
                     <div class="news-content">
-                        <h4>No Sale for Park Ave School in Whitman</h4>
-                        <p>Foreclosure begins for Regal Property</p>
+                        <h4>Loading latest news...</h4>
+                        <p>Fetching from South Shore News</p>
                     </div>
-                    <span class="news-source">South Shore News</span>
-                </a>
-
-                <a href="https://www.southshore.news/p/szymaniak-steps-down-as-whitman-hanson" class="news-item fade-in">
-                    <span class="news-date">Jan 2, 2026</span>
-                    <div class="news-content">
-                        <h4>Szymaniak Steps Down as Whitman-Hanson Superintendent</h4>
-                        <p>Marcus Named Acting Superintendent</p>
-                    </div>
-                    <span class="news-source">South Shore News</span>
-                </a>
-
-                <a href="https://www.southshore.news/p/whitman-select-board-and-fincom-hear" class="news-item fade-in">
-                    <span class="news-date">Dec 22, 2025</span>
-                    <div class="news-content">
-                        <h4>Whitman Select Board and FinCom Hear $1.3M Deficit Looms for FY27</h4>
-                        <p>Facing a "perfect storm" of inflation and stagnant state aid</p>
-                    </div>
-                    <span class="news-source">South Shore News</span>
-                </a>
-
-                <a href="https://www.southshore.news/p/whitman-select-board-member-howe" class="news-item fade-in">
-                    <span class="news-date">Dec 5, 2025</span>
-                    <div class="news-content">
-                        <h4>Whitman Select Board Member Howe Announces Resignation</h4>
-                        <p>Town considers middle school borrowing takeover</p>
-                    </div>
-                    <span class="news-source">South Shore News</span>
-                </a>
-
-                <a href="https://www.southshore.news/p/whitman-select-board-votes-to-explore" class="news-item fade-in">
-                    <span class="news-date">Nov 24, 2025</span>
-                    <div class="news-content">
-                        <h4>Whitman Select Board Votes to Explore Taking Over School Building Borrowing</h4>
-                        <p>Investigating municipal assumption of regional school debt</p>
-                    </div>
-                    <span class="news-source">South Shore News</span>
-                </a>
+                    <span class="news-source">⏳</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1090,6 +1035,129 @@
         document.querySelector('.mobile-menu').addEventListener('click', () => {
             const links = document.querySelector('.nav-links');
             links.classList.toggle('open');
+        });
+
+        // RSS Feed Configuration
+        const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+        const BLOG_FEED = 'https://votejustinevans.com/blog?format=rss';
+        const NEWS_FEED = 'https://www.southshore.news/feed';
+
+        // Helper: Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Helper: Get excerpt from description
+        function getExcerpt(html, maxLength = 120) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            const text = div.textContent || div.innerText || '';
+            return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+        }
+
+        // Helper: Pick an icon based on title keywords
+        function pickIcon(title) {
+            const t = title.toLowerCase();
+            if (t.includes('budget') || t.includes('deficit') || t.includes('finance')) return '💰';
+            if (t.includes('school') || t.includes('superintendent')) return '🎓';
+            if (t.includes('select board')) return '🏛️';
+            if (t.includes('update')) return '📋';
+            if (t.includes('election') || t.includes('vote')) return '🗳️';
+            if (t.includes('storm') || t.includes('cost')) return '⚡';
+            return '📰';
+        }
+
+        // Fetch and render blog posts
+        async function loadBlogPosts() {
+            const container = document.getElementById('blog-grid');
+            try {
+                const response = await fetch(RSS2JSON_API + encodeURIComponent(BLOG_FEED));
+                const data = await response.json();
+                
+                if (data.status !== 'ok') throw new Error('Feed error');
+                
+                const posts = data.items.slice(0, 3);
+                container.innerHTML = posts.map(post => `
+                    <a href="${post.link}" class="blog-card fade-in visible" target="_blank" rel="noopener">
+                        <div class="blog-card-image">${pickIcon(post.title)}</div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="blog-card-category">Blog</span>
+                                <span class="blog-card-date">${formatDate(post.pubDate)}</span>
+                            </div>
+                            <h3>${post.title}</h3>
+                            <p>${getExcerpt(post.description)}</p>
+                        </div>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Blog feed error:', error);
+                container.innerHTML = `
+                    <a href="https://votejustinevans.com/blog" class="blog-card fade-in visible">
+                        <div class="blog-card-image">📋</div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="blog-card-category">Blog</span>
+                            </div>
+                            <h3>Visit the Blog</h3>
+                            <p>Read the latest Whitman updates and analysis on VoteJustinEvans.com</p>
+                        </div>
+                    </a>
+                `;
+            }
+        }
+
+        // Fetch and render news (filter for Whitman-related)
+        async function loadNews() {
+            const container = document.getElementById('news-list');
+            try {
+                const response = await fetch(RSS2JSON_API + encodeURIComponent(NEWS_FEED));
+                const data = await response.json();
+                
+                if (data.status !== 'ok') throw new Error('Feed error');
+                
+                // Filter for Whitman-related posts, fallback to all if none found
+                let posts = data.items.filter(post => 
+                    post.title.toLowerCase().includes('whitman') || 
+                    post.description.toLowerCase().includes('whitman')
+                );
+                if (posts.length < 3) {
+                    posts = data.items.slice(0, 5);
+                } else {
+                    posts = posts.slice(0, 5);
+                }
+                
+                container.innerHTML = posts.map(post => `
+                    <a href="${post.link}" class="news-item fade-in visible" target="_blank" rel="noopener">
+                        <span class="news-date">${formatDate(post.pubDate)}</span>
+                        <div class="news-content">
+                            <h4>${post.title}</h4>
+                            <p>${getExcerpt(post.description, 80)}</p>
+                        </div>
+                        <span class="news-source">South Shore News</span>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('News feed error:', error);
+                container.innerHTML = `
+                    <a href="https://www.southshore.news/t/whitman" class="news-item fade-in visible">
+                        <span class="news-date">—</span>
+                        <div class="news-content">
+                            <h4>Visit South Shore News</h4>
+                            <p>Read the latest Whitman coverage</p>
+                        </div>
+                        <span class="news-source">South Shore News</span>
+                    </a>
+                `;
+            }
+        }
+
+        // Load feeds on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlogPosts();
+            loadNews();
         });
     </script>
 </body>
