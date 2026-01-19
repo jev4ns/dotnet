@@ -1086,10 +1086,10 @@
         <div class="section-container">
             <div class="section-header-left">
                 <div>
-                    <p class="section-label fade-in">Writing</p>
+                    <p class="section-label fade-in">Evans Explains</p>
                     <h2 class="section-title fade-in">From the Blog</h2>
                 </div>
-                <a href="https://votejustinevans.com/blog" class="section-link fade-in">
+                <a href="https://jev4ns.substack.com" class="section-link fade-in">
                     View all posts
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
@@ -1240,7 +1240,7 @@
 
         // RSS Feed Configuration
         const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
-        const BLOG_FEED = 'https://votejustinevans.com/blog?format=rss';
+        const BLOG_FEED = 'https://jev4ns.substack.com/feed';
         const NEWS_FEED = 'https://www.southshore.news/feed';
 
         // Helper: Format date
@@ -1296,14 +1296,14 @@
             } catch (error) {
                 console.error('Blog feed error:', error);
                 container.innerHTML = `
-                    <a href="https://votejustinevans.com/blog" class="blog-card fade-in visible">
+                    <a href="https://jev4ns.substack.com" class="blog-card fade-in visible">
                         <div class="blog-card-image">📋</div>
                         <div class="blog-card-content">
                             <div class="blog-card-meta">
                                 <span class="blog-card-category">Blog</span>
                             </div>
-                            <h3>Visit the Blog</h3>
-                            <p>Read the latest Whitman updates and analysis on VoteJustinEvans.com</p>
+                            <h3>Visit Evans Explains</h3>
+                            <p>Read the latest updates and analysis on Substack</p>
                         </div>
                     </a>
                 `;
