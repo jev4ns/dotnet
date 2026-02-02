@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Original Toll House Cookie — Justin Evans</title>
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://justinevans.net/toll">
+    <meta property="og:title" content="The Original Toll House Cookie — Justin Evans">
+    <meta property="og:description" content="The disputed history of the Original Toll House Chocolate Chip Cookie recipe, with three contenders and my personal lockdown recipe.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --navy-light: #2a3d5c;
+            --amber: #c8923a;
+            --amber-light: #e5b161;
+            --cream: #faf8f5;
+            --warm-white: #fffefb;
+            --text-dark: #1a1a1a;
+            --text-muted: #5a5a5a;
+            --border-light: #e8e4df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        a {
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--amber);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 254, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span {
+            color: var(--amber);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            background: var(--warm-white);
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--navy);
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-intro {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 4rem 2rem;
+            background: var(--cream);
+        }
+
+        .story-container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .story-text {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text strong {
+            color: var(--navy);
+        }
+
+        /* Recipe Cards */
+        .recipes {
+            padding: 4rem 2rem;
+            background: var(--warm-white);
+        }
+
+        .recipes-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(26, 39, 68, 0.1);
+        }
+
+        .recipe-card.featured {
+            grid-column: 1 / -1;
+            border: 2px solid var(--amber);
+        }
+
+        .recipe-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .recipe-card.featured .recipe-header {
+            background: linear-gradient(135deg, rgba(200, 146, 58, 0.1), rgba(200, 146, 58, 0.05));
+        }
+
+        .recipe-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--amber);
+            background: rgba(200, 146, 58, 0.15);
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-card.featured .recipe-badge {
+            background: var(--amber);
+            color: white;
+        }
+
+        .recipe-card h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .recipe-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .recipe-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .recipe-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .recipe-section h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 0.75rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .recipe-section ul {
+            list-style: none;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .recipe-section li {
+            padding: 0.3rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .recipe-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--amber);
+        }
+
+        .recipe-section p,
+        .recipe-section ol {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .recipe-section ol {
+            padding-left: 1.25rem;
+        }
+
+        .recipe-section ol li {
+            padding: 0.3rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .recipe-section ol li::before {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recipe-card.featured {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .story,
+            .recipes {
+                padding: 3rem 1.5rem;
+            }
+
+            .recipe-header,
+            .recipe-body {
+                padding: 1.5rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">JE<span>_</span></a>
+            <div class="nav-links">
+                <a href="index.html#work">Work</a>
+                <a href="index.html#gallery">Photos</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="index.html#news">News</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <a href="index.html" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to JustinEvans.net
+            </a>
+
+            <p class="section-label">Whitman History</p>
+            <h1>The Original Toll House Cookie</h1>
+            <p class="hero-intro">The "Original Toll House Chocolate Chip Cookie" recipe is disputed, with three serious contenders. I take Whitman history very seriously, so here's my take on each—and the one I believe to be true.</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="story-container">
+            <div class="story-text">
+                <p>There's the <strong>back of the bag recipe</strong>, printed on Nestlé Toll House Chocolate chips. This has changed over the years and while it's the most popular nationwide, true Whitmanites know it's Nestlé's recipe and not Ruth Graves Wakefield's.</p>
+
+                <p>There's the <strong>recipe Ruth published in her 1938 cookbook</strong>, "Toll House Tried and True Recipes". You might think this is the real recipe, however...</p>
+
+                <p>Then there's the <strong>Sue Brides recipe</strong>, passed down through her daughter Peg. Sue was the baker in the Toll House. I got this recipe from former State Representative Kathy Teahan, a true Whitmanite who once worked in the Toll House, and it's the one I choose to believe.</p>
+
+                <p>As a bonus, I'll include <strong>my chocolate chip cookie recipe</strong>, honed during the pandemic lockdown.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section class="recipes">
+        <div class="recipes-container">
+            <div class="section-header">
+                <p class="section-label">The Recipes</p>
+                <h2 class="section-title">Four Takes on a Classic</h2>
+            </div>
+
+            <div class="recipe-grid">
+                <!-- Sue Brides Recipe (Featured) -->
+                <div class="recipe-card featured fade-in">
+                    <div class="recipe-header">
+                        <span class="recipe-badge">The True Recipe</span>
+                        <h3>From the Baker</h3>
+                        <p class="recipe-subtitle">Sue Brides' recipe, passed down from the Toll House kitchen</p>
+                    </div>
+                    <div class="recipe-body">
+                        <div class="recipe-section">
+                            <h4>Ingredients</h4>
+                            <ul>
+                                <li>1½ cup shortening</li>
+                                <li>1⅛ cup sugar</li>
+                                <li>1⅛ cup brown sugar</li>
+                                <li>1½ tsp. vanilla</li>
+                                <li>3 eggs</li>
+                                <li>1½ tsp. salt</li>
+                                <li>3⅛ cup King Arthur all purpose flour</li>
+                                <li>1½ tsp. baking soda</li>
+                                <li>1½ tsp. hot water</li>
+                                <li>2 cup chocolate chips</li>
+                            </ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Instructions</h4>
+                            <ol>
+                                <li>In small bowl, combine flour + salt</li>
+                                <li>In large bowl, cream (beat) shortening, sugars + vanilla</li>
+                                <li>Add eggs, one at a time, beating well after each</li>
+                                <li>Gradually add flour mixture, alternating with baking soda dissolved in hot water</li>
+                                <li>Chill overnight</li>
+                                <li>Preheat oven to 375°F</li>
+                                <li>Drop small spoonfuls onto ungreased baking sheet</li>
+                                <li>Bake 9-12 minutes</li>
+                                <li>Cool 2 minutes on baking sheet, remove to rack</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back of the Bag Recipe -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-header">
+                        <span class="recipe-badge">The Popular One</span>
+                        <h3>"Back of the Bag"</h3>
+                        <p class="recipe-subtitle">Nestlé's version</p>
+                    </div>
+                    <div class="recipe-body">
+                        <div class="recipe-section">
+                            <h4>Ingredients</h4>
+                            <ul>
+                                <li>2¼ cups all-purpose flour</li>
+                                <li>1 teaspoon baking soda</li>
+                                <li>1 teaspoon salt</li>
+                                <li>1 cup (2 sticks) butter, softened</li>
+                                <li>¾ cup granulated sugar</li>
+                                <li>¾ cup packed brown sugar</li>
+                                <li>1 teaspoon vanilla extract</li>
+                                <li>2 large eggs</li>
+                                <li>2 cups Nestlé Toll House Semi-Sweet Chocolate Morsels</li>
+                                <li>1 cup chopped nuts (optional; add 1-2 tbsp flour if omitting)</li>
+                            </ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Instructions</h4>
+                            <ol>
+                                <li>Preheat oven to 375°F</li>
+                                <li>Combine flour, baking soda and salt in small bowl</li>
+                                <li>Beat butter, granulated sugar, brown sugar and vanilla extract in large mixer bowl until creamy</li>
+                                <li>Add eggs, one at a time, beating well after each addition</li>
+                                <li>Gradually beat in flour mixture</li>
+                                <li>Stir in morsels and nuts</li>
+                                <li>Drop by rounded tablespoon onto ungreased baking sheets</li>
+                                <li>Bake for 9 to 11 minutes or until golden brown</li>
+                                <li>Cool on baking sheets for 2 minutes; remove to wire racks to cool completely</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ruth's 1938 Recipe -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-header">
+                        <span class="recipe-badge">The Published One</span>
+                        <h3>Tried and True Recipe</h3>
+                        <p class="recipe-subtitle">From Ruth's 1938 cookbook</p>
+                    </div>
+                    <div class="recipe-body">
+                        <div class="recipe-section">
+                            <h4>Ingredients</h4>
+                            <ul>
+                                <li>1 cup butter</li>
+                                <li>¾ cup brown sugar</li>
+                                <li>¾ cup granulated sugar</li>
+                                <li>2 eggs beaten whole</li>
+                                <li>1 tsp baking soda dissolved in 1 tsp hot water</li>
+                                <li>2¼ cups flour sifted with 1 tsp salt</li>
+                                <li>1 cup chopped nuts</li>
+                                <li>2 bars (7 oz.) Nestlé's yellow label chocolate, semi-sweet, cut in pieces the size of a pea</li>
+                                <li>1 tsp vanilla</li>
+                            </ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Instructions</h4>
+                            <p>Cream the butter, add sugars and beaten eggs. Dissolve baking soda in hot water and mix alternately with the flour and salt. Add nuts and chocolate pieces. Flavor with vanilla and drop half teaspoons on greased cookie sheet. Bake 10-12 minutes at 375°F. Makes 100 cookies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Justin's Lockdown Recipe -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-header">
+                        <span class="recipe-badge">The Modern Take</span>
+                        <h3>Justin's Lockdown Recipe</h3>
+                        <p class="recipe-subtitle">Perfected during the pandemic</p>
+                    </div>
+                    <div class="recipe-body">
+                        <div class="recipe-section">
+                            <h4>Ingredients</h4>
+                            <ul>
+                                <li>1.5 cups cake flour</li>
+                                <li>2 cups all purpose flour</li>
+                                <li>1.5 tsp kosher salt</li>
+                                <li>2 tsp corn starch</li>
+                                <li>½ tsp baking soda</li>
+                                <li>1.5 cups Crisco</li>
+                                <li>1.25 cups brown sugar</li>
+                                <li>½ cup white granulated sugar</li>
+                                <li>2 eggs</li>
+                                <li>3 egg yolks</li>
+                                <li>1 lb (450g) semi-sweet chips</li>
+                            </ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Instructions</h4>
+                            <ol>
+                                <li>In a medium saucepan, melt Crisco and set to the side to cool</li>
+                                <li>In a medium size bowl, combine cake flour, all-purpose flour, kosher salt, cornstarch, and baking soda. Whisk together</li>
+                                <li>Using a stand mixer fitted with the whisk attachment, add light brown sugar and granulated sugar. Whisk together on medium speed then slowly stream in the Crisco</li>
+                                <li>Once combined mix in the eggs one at a time followed by the egg yolks</li>
+                                <li>Once smooth switch to the paddle attachment and mix in the flour mixture until smooth</li>
+                                <li>Add in chocolate chips. Mix until combined</li>
+                                <li>Place in a bowl, cover, and refrigerate overnight</li>
+                                <li>Weigh each dough ball out to about 100g and place on a parchment lined baking sheet</li>
+                                <li>Bake in a 385°F oven for about 16 minutes</li>
+                                <li>Set on a wire rack to cool before serving</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 Justin Evans</p>
+            <div class="footer-links">
+                <a href="https://southshore.news">South Shore News</a>
+                <a href="index.html">Home</a>
+                <a href="https://www.linkedin.com/in/evansjustin">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
