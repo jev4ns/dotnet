@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Justin Evans</title>
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://justinevans.net/story.html">
+<meta property="og:title" content="Justin Evans — Energy, News, Public Service">
+<meta property="og:description" content="Energy regulator, local news founder, and elected official on Massachusetts' South Shore.">
+<meta property="og:image" content="https://justinevans.net/headshot.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#1a2744; --amber:#c8923a; --amber-light:#e5b161;
+  --cream:#faf8f5; --warm-white:#fffefb;
+  --panel-h:100dvh; --feed-w:100vw; --radius:0px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#000;
+  font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* ---------- Feed ---------- */
+.feed{
+  position:relative;width:var(--feed-w);height:var(--panel-h);
+  overflow-y:scroll;overflow-x:hidden;
+  scroll-snap-type:y mandatory;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  background:var(--navy);border-radius:var(--radius);
+}
+.feed::-webkit-scrollbar{display:none}
+
+.panel{
+  position:relative;height:var(--panel-h);width:100%;
+  scroll-snap-align:start;scroll-snap-stop:always;
+  overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  background:var(--navy);
+}
+
+/* Media layer — swap <img> for <video> or an <iframe> here, same class */
+.panel-media{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;border:0}
+.panel::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(26,39,68,.55) 0%, rgba(26,39,68,.05) 28%,
+    rgba(26,39,68,.55) 62%, rgba(10,16,30,.94) 100%)}
+.panel-solid::after{background:linear-gradient(180deg,
+    rgba(26,39,68,.35) 0%, rgba(10,16,30,.75) 100%)}
+
+/* Tap-to-advance zones sit above media, below content */
+.tap{position:absolute;top:0;bottom:0;z-index:2;-webkit-tap-highlight-color:transparent}
+.tap-prev{left:0;width:32%}
+.tap-next{right:0;width:68%}
+
+.panel-body{
+  position:relative;z-index:3;
+  padding:0 1.5rem calc(6.5rem + env(safe-area-inset-bottom)) 1.5rem;
+  animation:rise .5s cubic-bezier(.2,.7,.3,1) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .panel-body{animation:none}
+  .feed{scroll-behavior:auto}
+}
+
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--amber-light);margin-bottom:.85rem}
+.panel h1{font-family:'Crimson Pro',Georgia,serif;font-weight:700;
+  font-size:clamp(2.6rem,11vw,3.6rem);line-height:1.02;color:#fff;
+  letter-spacing:-.025em;margin-bottom:.9rem}
+.panel h2{font-family:'Crimson Pro',Georgia,serif;font-weight:700;
+  font-size:clamp(1.9rem,7.5vw,2.5rem);line-height:1.12;color:#fff;
+  letter-spacing:-.02em;margin-bottom:.75rem}
+.panel p{font-size:1.03rem;line-height:1.6;color:rgba(255,255,255,.82);
+  max-width:32ch}
+.panel p + p{margin-top:.7rem}
+
+.stats{display:flex;gap:1.9rem;margin:1.4rem 0 .3rem}
+.stat .n{font-family:'Crimson Pro',serif;font-weight:700;font-size:1.85rem;
+  color:var(--amber-light);line-height:1}
+.stat .l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-top:.3rem}
+
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+.tag{font-size:.76rem;font-weight:500;padding:.4rem .85rem;border-radius:100px;
+  border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.9)}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;
+  padding:.85rem 1.4rem;border-radius:100px;background:var(--amber);
+  color:#fff;font-weight:600;font-size:.95rem;
+  transition:background .2s ease,transform .2s ease}
+.btn:active{transform:scale(.97)}
+.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.35)}
+
+/* Press list */
+.press-list{display:flex;flex-direction:column;gap:.55rem;margin-top:1.2rem}
+.press-row{display:block;padding:.85rem 1rem;border-radius:12px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  transition:background .2s ease}
+.press-row:active{background:rgba(255,255,255,.14)}
+.press-row .src{font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--amber-light)}
+.press-row .hl{font-size:.9rem;line-height:1.35;color:#fff;margin-top:.25rem}
+
+/* Connect grid */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.3rem}
+.link-card{padding:1rem;border-radius:14px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);transition:background .2s ease}
+.link-card:active{background:rgba(255,255,255,.16)}
+.link-card .ic{font-size:1.3rem}
+.link-card .t{font-size:.88rem;font-weight:600;color:#fff;margin-top:.35rem}
+.link-card .s{font-size:.74rem;color:rgba(255,255,255,.6);margin-top:.1rem}
+
+/* ---------- Story progress ---------- */
+.progress{position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;gap:4px;padding:calc(.7rem + env(safe-area-inset-top)) .85rem .7rem}
+.seg{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.28);
+  overflow:hidden;cursor:pointer}
+.seg i{display:block;height:100%;width:0;background:#fff;border-radius:2px;
+  transition:width .35s ease}
+.seg.done i{width:100%}
+.seg.active i{width:100%}
+
+/* ---------- Sticky CTA ---------- */
+.cta-bar{position:absolute;left:0;right:0;bottom:0;z-index:20;
+  padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(10,16,30,0),rgba(10,16,30,.92) 45%);
+  display:flex;gap:.6rem;align-items:center}
+.cta-main{flex:1;text-align:center;padding:.9rem 1rem;border-radius:100px;
+  background:var(--amber);color:#fff;font-weight:600;font-size:.95rem;
+  transition:transform .2s ease}
+.cta-main:active{transform:scale(.98)}
+.cta-alt{padding:.9rem 1.1rem;border-radius:100px;color:#fff;font-weight:600;
+  font-size:.95rem;border:1.5px solid rgba(255,255,255,.3)}
+
+.scroll-hint{position:absolute;bottom:calc(5.6rem + env(safe-area-inset-bottom));
+  left:50%;transform:translateX(-50%);z-index:10;
+  color:rgba(255,255,255,.65);font-size:1.4rem;
+  animation:bob 1.9s ease-in-out infinite;pointer-events:none}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+.feed.moved .scroll-hint{opacity:0;transition:opacity .3s ease}
+
+/* ---------- Desktop: phone frame ---------- */
+@media (min-width:820px){
+  body{display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 0%,#24365c,#0d1526 70%)}
+  :root{--feed-w:400px;--radius:38px}
+  .feed{--panel-h:min(840px,90vh);height:min(840px,90vh);
+    box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 10px #10192c,0 0 0 11px #2a3a58}
+  .panel{height:min(840px,90vh)}
+  .desk-note{position:fixed;left:50%;bottom:2.2rem;transform:translateX(-50%);
+    color:rgba(255,255,255,.42);font-size:.8rem;letter-spacing:.04em;
+    text-align:center}
+}
+@media (max-width:819px){.desk-note{display:none}}
+</style>
+</head>
+<body>
+
+<div class="feed" id="feed">
+
+  <!-- 1 · Intro -->
+  <section class="panel">
+    <img class="panel-media" src="scituate-light.jpg" alt="Justin Evans at Scituate Lighthouse">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <a class="tap tap-next" href="#" aria-label="Next"></a>
+    <div class="panel-body">
+      <p class="eyebrow">Whitman, Massachusetts</p>
+      <h1>Justin Evans</h1>
+      <p>Energy regulator. Local news founder. Elected official. Working where infrastructure, technology, and civic life meet.</p>
+      <div class="tags">
+        <span class="tag">Pipeline Safety</span>
+        <span class="tag">AI Journalism</span>
+        <span class="tag">Local Government</span>
+      </div>
+    </div>
+    <div class="scroll-hint">⌄</div>
+  </section>
+
+  <!-- 2 · South Shore News -->
+  <section class="panel">
+    <img class="panel-media" src="ssn-vest.jpg" alt="South Shore News lighthouse logo">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <a class="tap tap-next" href="#" aria-label="Next"></a>
+    <div class="panel-body">
+      <p class="eyebrow">Founded 2024</p>
+      <h2>South Shore News</h2>
+      <p>AI-powered coverage of town government across 19 communities that traditional media left behind.</p>
+      <div class="stats">
+        <div class="stat"><div class="n">3,900+</div><div class="l">Subscribers</div></div>
+        <div class="stat"><div class="n">19</div><div class="l">Towns</div></div>
+        <div class="stat"><div class="n">2,000+</div><div class="l">Stories</div></div>
+      </div>
+      <a class="btn" href="https://southshore.news" target="_blank" rel="noopener">Read the latest →</a>
+    </div>
+  </section>
+
+  <!-- 3 · DPU -->
+  <section class="panel">
+    <img class="panel-media" src="speaking-napsr.jpg" alt="Justin Evans presenting on pipeline safety">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <a class="tap tap-next" href="#" aria-label="Next"></a>
+    <div class="panel-body">
+      <p class="eyebrow">Energy Regulation</p>
+      <h2>Keeping the gas system safe</h2>
+      <p>Assistant Director of Pipeline Safety at the Massachusetts DPU. Seven years on pipeline infrastructure, LNG facilities, and first-in-nation safety guidelines for networked geothermal.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Select Board -->
+  <section class="panel">
+    <img class="panel-media" src="speaking-rally.jpg" alt="Justin Evans speaking at a rally">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <a class="tap tap-next" href="#" aria-label="Next"></a>
+    <div class="panel-body">
+      <p class="eyebrow">Elected since 2019</p>
+      <h2>Whitman Select Board</h2>
+      <p>Three terms. Community Preservation Act adoption, school agreement reform, and municipal energy aggregation.</p>
+      <a class="btn btn-ghost" href="https://votejustinevans.com" target="_blank" rel="noopener">The campaign →</a>
+    </div>
+  </section>
+
+  <!-- 5 · Press -->
+  <section class="panel panel-solid">
+    <img class="panel-media" src="lt-governor.jpg" alt="Justin Evans with Lt. Gov. Kim Driscoll">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <a class="tap tap-next" href="#" aria-label="Next"></a>
+    <div class="panel-body">
+      <p class="eyebrow">In the Media</p>
+      <h2>Press</h2>
+      <div class="press-list">
+        <a class="press-row" href="https://www.bostonglobe.com/2026/06/12/business/south-shore-local-news-ai/" target="_blank" rel="noopener">
+          <div class="src">Boston Globe · Jun 2026</div>
+          <div class="hl">A South Shore AI-generated news site put up a paywall. Hundreds of readers opened their wallets.</div>
+        </a>
+        <a class="press-row" href="https://www.iheart.com/podcast/1248-new-england-business-repo-155159407/episode/domestic-violence-protections-digital-currencies-and-the-future-of-regional-air-travel-337214413/" target="_blank" rel="noopener">
+          <div class="src">WRKO · Jun 2026</div>
+          <div class="hl">New England Business Report: AI-generated local news on the South Shore</div>
+        </a>
+        <a class="press-row" href="https://www.bostonglobe.com/2025/03/01/business/local-news-artificial-intelligence-startups-town-meetings/" target="_blank" rel="noopener">
+          <div class="src">Boston Globe · Mar 2025</div>
+          <div class="hl">The use of AI in local news faces a substantial obstacle: trust</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Connect -->
+  <section class="panel panel-solid">
+    <img class="panel-media" src="headshot.jpg" alt="Justin Evans">
+    <a class="tap tap-prev" href="#" aria-label="Previous"></a>
+    <div class="panel-body">
+      <p class="eyebrow">Get in Touch</p>
+      <h2>Connect</h2>
+      <div class="links">
+        <a class="link-card" href="mailto:justin@justinevans.net">
+          <div class="ic">✉️</div><div class="t">Email</div><div class="s">justin@justinevans.net</div></a>
+        <a class="link-card" href="https://www.linkedin.com/in/evansjustin" target="_blank" rel="noopener">
+          <div class="ic">💼</div><div class="t">LinkedIn</div><div class="s">Professional network</div></a>
+        <a class="link-card" href="https://southshore.news" target="_blank" rel="noopener">
+          <div class="ic">📰</div><div class="t">South Shore News</div><div class="s">3,900+ subscribers</div></a>
+        <a class="link-card" href="https://evansexplains.substack.com" target="_blank" rel="noopener">
+          <div class="ic">✍️</div><div class="t">Evans Explains</div><div class="s">The blog</div></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="cta-bar">
+    <a class="cta-main" href="https://southshore.news" target="_blank" rel="noopener">Subscribe to South Shore News</a>
+    <a class="cta-alt" href="mailto:justin@justinevans.net" aria-label="Email Justin">✉️</a>
+  </div>
+
+</div>
+
+<div class="desk-note">Built for mobile — open justinevans.net on your phone</div>
+
+<script>
+(function(){
+  const feed = document.getElementById('feed');
+  const panels = [...feed.querySelectorAll('.panel')];
+  const prog = document.getElementById('progress');
+  let current = 0;
+
+  // Build progress segments
+  panels.forEach((_, i) => {
+    const s = document.createElement('div');
+    s.className = 'seg';
+    s.innerHTML = '<i></i>';
+    s.addEventListener('click', e => { e.stopPropagation(); go(i); });
+    prog.appendChild(s);
+  });
+  const segs = [...prog.children];
+
+  function paint(){
+    segs.forEach((s, i) => {
+      s.classList.toggle('done', i < current);
+      s.classList.toggle('active', i === current);
+    });
+  }
+
+  function go(i){
+    current = Math.max(0, Math.min(panels.length - 1, i));
+    panels[current].scrollIntoView({behavior:'smooth', block:'start'});
+    feed.classList.add('moved');
+    paint();
+  }
+
+  // Track position on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio > .55){
+        current = panels.indexOf(e.target);
+        paint();
+      }
+    });
+  }, {root: feed, threshold: [.55]});
+  panels.forEach(p => io.observe(p));
+
+  feed.addEventListener('scroll', () => feed.classList.add('moved'), {passive:true, once:true});
+
+  // Tap zones
+  feed.addEventListener('click', e => {
+    const z = e.target.closest('.tap');
+    if (!z) return;
+    e.preventDefault();
+    go(current + (z.classList.contains('tap-next') ? 1 : -1));
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); go(current+1); }
+    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft' ){ e.preventDefault(); go(current-1); }
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
