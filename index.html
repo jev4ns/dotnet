@@ -18,6 +18,26 @@
     <meta name="twitter:description" content="Energy regulator, local news founder, and elected official on Massachusetts' South Shore.">
     <meta name="twitter:image" content="https://justinevans.net/headshot.jpg">
     
+    <!-- Mobile story version -->
+    <link rel="alternate" media="only screen and (max-width: 700px)" href="https://justinevans.net/story.html">
+    <script>
+    (function(){
+      try{
+        // ?full=1 pins the visitor to the desktop site from then on
+        if (new URLSearchParams(location.search).get('full') === '1'){
+          localStorage.setItem('je_full','1'); return;
+        }
+        if (localStorage.getItem('je_full') === '1') return;  // opted out
+        if (location.hash) return;                            // preserve deep links
+        if (!window.matchMedia) return;
+        var narrow = matchMedia('(max-width: 700px)').matches;
+        var touch  = matchMedia('(pointer: coarse)').matches;
+        // replace() so Back doesn't bounce them straight here again
+        if (narrow && touch) location.replace('/story.html');
+      }catch(e){}
+    })();
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     
