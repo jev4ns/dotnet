@@ -1,0 +1,32 @@
+name: Render feeds
+
+# Re-renders the South Shore News and Evans Explains feeds into index.html
+# and commits only if something changed. Netlify deploys on the push.
+on:
+  schedule:
+    - cron: '23 10 * * *'   # daily, ~6:23am Eastern
+  workflow_dispatch:         # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/render-feeds.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No feed changes."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Render feeds — $(date -u +%Y-%m-%d)"
+          git push
