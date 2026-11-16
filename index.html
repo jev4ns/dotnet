@@ -3,24 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justin Evans — Energy, News, Public Service</title>
-    
+    <title>Justin Evans — Assistant Director, Pipeline Safety, Massachusetts DPU</title>
+    <meta name="description" content="Justin Evans is Assistant Director of the Pipeline Safety Division at the Massachusetts Department of Public Utilities, working on the safety of natural gas pipelines, LNG facilities and networked geothermal systems. Founder of South Shore News and Chair of the Whitman Select Board.">
+    <link rel="canonical" href="https://justinevans.net/">
+
     <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
     <meta property="og:url" content="https://justinevans.net/">
-    <meta property="og:title" content="Justin Evans — Energy, News, Public Service">
-    <meta property="og:description" content="Energy regulator, local news founder, and elected official. Working at the intersection of infrastructure, technology, and civic engagement on Massachusetts' South Shore.">
-    <meta property="og:image" content="https://justinevans.net/headshot.jpg">
-    
+    <meta property="og:title" content="Justin Evans — Assistant Director, Pipeline Safety, Massachusetts DPU">
+    <meta property="og:description" content="Pipeline safety regulator at the Massachusetts Department of Public Utilities. Founder of South Shore News. Chair of the Whitman Select Board.">
+    <meta property="og:image" content="https://justinevans.net/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Justin Evans, Assistant Director, Pipeline Safety Division, Massachusetts Department of Public Utilities">
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Justin Evans — Energy, News, Public Service">
-    <meta name="twitter:description" content="Energy regulator, local news founder, and elected official on Massachusetts' South Shore.">
-    <meta name="twitter:image" content="https://justinevans.net/headshot.jpg">
-    
+    <meta name="twitter:title" content="Justin Evans — Assistant Director, Pipeline Safety, Massachusetts DPU">
+    <meta name="twitter:description" content="Pipeline safety regulator at the Massachusetts DPU. Founder of South Shore News. Chair of the Whitman Select Board.">
+    <meta name="twitter:image" content="https://justinevans.net/og-image.jpg">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Justin Evans",
+      "url": "https://justinevans.net/",
+      "image": "https://justinevans.net/headshot.jpg",
+      "jobTitle": "Assistant Director, Pipeline Safety Division",
+      "worksFor": {
+        "@type": "GovernmentOrganization",
+        "name": "Massachusetts Department of Public Utilities",
+        "url": "https://www.mass.gov/orgs/department-of-public-utilities"
+      },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Northeastern University" },
+      "homeLocation": { "@type": "Place", "name": "Whitman, Massachusetts" },
+      "knowsAbout": [
+        "Pipeline safety",
+        "Natural gas distribution",
+        "Liquefied natural gas facilities",
+        "Networked geothermal",
+        "Excavation damage prevention",
+        "Local government",
+        "AI in local news"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/evansjustin",
+        "https://evansexplains.substack.com"
+      ]
+    }
+    </script>
+
     <!-- Mobile story version -->
     <link rel="alternate" media="only screen and (max-width: 700px)" href="https://justinevans.net/story.html">
     <script>
+    document.documentElement.className += ' js';
     (function(){
       try{
         // ?full=1 pins the visitor to the desktop site from then on
@@ -40,7 +78,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,15 +95,8 @@
             --border-light: #e8e4df;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -81,882 +112,378 @@
             line-height: 1.3;
         }
 
-        a {
-            color: var(--navy);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--amber);
-        }
+        a { color: var(--navy); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--amber); }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(255, 254, 251, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-light);
             padding: 1rem 2rem;
         }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(26, 39, 68, 0.08);
-        }
-
+        nav.scrolled { box-shadow: 0 4px 20px rgba(26, 39, 68, 0.08); }
         .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
         .nav-logo {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--navy);
-            letter-spacing: -0.02em;
+            font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-weight: 700;
+            color: var(--navy); letter-spacing: -0.02em;
         }
-
-        .nav-logo span {
-            color: var(--amber);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
+        .nav-logo span { color: var(--amber); }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; }
         .nav-links a {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: color 0.2s ease;
+            font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
             letter-spacing: 0.01em;
         }
+        .nav-links a:hover { color: var(--navy); }
+        .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; }
 
-        .nav-links a:hover {
-            color: var(--navy);
-        }
-
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--navy);
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: var(--warm-white);
-            position: relative;
-            padding: 8rem 2rem 4rem;
+            min-height: 92vh; display: flex; align-items: center;
+            background: var(--warm-white); position: relative;
+            padding: 8rem 2rem 3rem;
         }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 1px;
-            background: var(--border-light);
-        }
-
         .hero-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.15fr 1fr; gap: 5rem; align-items: center;
         }
-
-        .hero-content {
-            animation: fadeIn 0.8s ease-out;
-        }
-
+        .hero-content { animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.8rem, 5vw, 4rem); color: var(--navy);
+            margin-bottom: 1rem; letter-spacing: -0.02em;
         }
-
+        .hero-title {
+            font-size: 1.2rem; font-weight: 600; color: var(--navy);
+            line-height: 1.5; margin-bottom: 0.6rem;
+        }
+        .hero-title span { display: block; font-weight: 500; color: var(--text-muted); }
+        .hero-secondary {
+            font-size: 0.98rem; color: var(--text-muted); margin-bottom: 1.4rem;
+        }
+        .hero-secondary b { color: var(--amber); font-weight: 600; padding: 0 0.35rem; }
         .hero-intro {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            font-size: 1.08rem; color: var(--text-muted);
+            margin-bottom: 1.8rem; line-height: 1.75; max-width: 34em;
         }
-
-        .hero-roles {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
-        }
-
+        .hero-roles { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.2rem; }
         .role-tag {
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            background: var(--cream);
-            border: 1px solid var(--border-light);
-            border-radius: 100px;
-            color: var(--text-muted);
-            transition: all 0.2s ease;
+            font-size: 0.82rem; font-weight: 500; padding: 0.45rem 0.95rem;
+            background: var(--cream); border: 1px solid var(--border-light);
+            border-radius: 100px; color: var(--text-muted);
         }
-
-        .role-tag:hover {
-            border-color: var(--amber);
-            color: var(--amber);
-        }
-
-        .hero-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
+        .role-tag.primary { border-color: var(--amber); color: var(--navy); background: rgba(200,146,58,0.08); }
+        .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
         .hero-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--navy);
-            padding: 0.6rem 0;
-            border-bottom: 2px solid transparent;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.95rem; font-weight: 500; color: var(--navy);
+            padding: 0.6rem 0; border-bottom: 2px solid transparent;
             transition: all 0.2s ease;
         }
-
-        .hero-link:hover {
-            border-bottom-color: var(--amber);
-            color: var(--navy);
-        }
-
-        .hero-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .hero-image {
-            position: relative;
-            animation: fadeIn 0.8s ease-out 0.2s both;
-        }
-
+        .hero-link:hover { border-bottom-color: var(--amber); color: var(--navy); }
+        .hero-link svg { width: 18px; height: 18px; }
+        .hero-image { position: relative; animation: fadeIn 0.8s ease-out 0.2s both; }
         .hero-image img {
-            width: 100%;
-            max-width: 380px;
-            border-radius: 8px;
+            width: 100%; max-width: 380px; border-radius: 8px;
             box-shadow: 0 20px 60px rgba(26, 39, 68, 0.12);
         }
-
         .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--amber);
-            border-radius: 8px;
-            z-index: -1;
+            content: ''; position: absolute; top: 1.5rem; left: 1.5rem;
+            width: 100%; max-width: 380px; height: 100%;
+            border: 2px solid var(--amber); border-radius: 8px; z-index: -1;
         }
 
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
+        /* As featured in */
+        .featured {
+            padding: 1.6rem 2rem; background: var(--warm-white);
+            border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
         }
-
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
+        .featured-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center;
+            flex-wrap: wrap; gap: 1rem 2.6rem;
         }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        .featured-label {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--text-muted);
         }
+        .featured-outlet {
+            font-family: 'Crimson Pro', Georgia, serif; font-size: 1.35rem;
+            font-weight: 600; color: var(--navy); opacity: 0.8;
+        }
+        .featured-outlet:hover { opacity: 1; color: var(--navy); }
 
+        /* Sections */
+        section { padding: 6rem 2rem; }
+        .section-container { max-width: 1100px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
         .section-header-left {
-            text-align: left;
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            text-align: left; margin-bottom: 3rem;
+            display: flex; justify-content: space-between; align-items: flex-end;
         }
-
         .section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 1rem;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
         }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            color: var(--navy);
-            letter-spacing: -0.02em;
-        }
-
+        .section-title { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--navy); letter-spacing: -0.02em; }
+        .section-sub { color: var(--text-muted); margin-top: 0.75rem; font-size: 1rem; }
         .section-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--navy);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 0.9rem; font-weight: 600; color: var(--navy);
+            display: inline-flex; align-items: center; gap: 0.5rem;
         }
+        .section-link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+        .section-link:hover svg { transform: translateX(3px); }
 
-        .section-link:hover {
-            color: var(--amber);
-        }
-
-        .section-link svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.2s ease;
-        }
-
-        .section-link:hover svg {
-            transform: translateX(3px);
-        }
-
-        /* Work Section */
-        .work {
-            background: var(--cream);
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
+        /* Work */
+        .work { background: var(--cream); }
+        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .work-card {
-            background: var(--warm-white);
-            border-radius: 12px;
-            overflow: hidden;
+            background: var(--warm-white); border-radius: 12px; overflow: hidden;
             border: 1px solid var(--border-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
-
-        .work-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(26, 39, 68, 0.1);
-        }
-
-        .work-card-header {
-            padding: 2rem 2rem 1.5rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-
+        .work-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26, 39, 68, 0.1); }
+        .work-card-header { padding: 2rem 2rem 1.5rem; border-bottom: 1px solid var(--border-light); }
         .work-card-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.75rem;
+            width: 56px; height: 56px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.25rem; font-size: 1.75rem;
         }
-
-        .work-card:nth-child(1) .work-card-icon {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        }
-
-        .work-card:nth-child(2) .work-card-icon {
-            background: linear-gradient(135deg, var(--amber), #b8860b);
-        }
-
-        .work-card:nth-child(3) .work-card-icon {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
+        .icon-energy { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .icon-news   { background: linear-gradient(135deg, var(--amber), #b8860b); }
+        .icon-gov    { background: linear-gradient(135deg, #10b981, #059669); }
         .work-card-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;
         }
-
-        .work-card h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.01em;
-        }
-
-        .work-card-body {
-            padding: 1.5rem 2rem 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .work-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            flex: 1;
-        }
-
+        .work-card h3 { font-size: 1.5rem; color: var(--navy); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+        .work-card .role { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); }
+        .work-card-body { padding: 1.5rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+        .work-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .work-card-body > p:first-child { flex: 1; }
         .work-card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--navy);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            margin-top: 1.5rem; font-size: 0.9rem; font-weight: 600; color: var(--navy);
+        }
+        .work-card-link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+        .work-card-link:hover svg { transform: translateX(3px); }
+        .disclosure {
+            margin-top: 1rem; padding-top: 0.9rem; border-top: 1px dashed var(--border-light);
+            font-size: 0.8rem !important; line-height: 1.55 !important; color: var(--text-muted);
         }
 
-        .work-card-link:hover {
-            color: var(--amber);
+        /* Featured energy card: full width, larger */
+        .work-card.feature { grid-column: 1 / -1; border-color: rgba(59,130,246,0.35); }
+        .work-card.feature .work-card-header {
+            display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center;
+            padding: 2.5rem 2.5rem 2rem;
         }
-
-        .work-card-link svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.2s ease;
+        .work-card.feature .work-card-icon { width: 72px; height: 72px; font-size: 2.2rem; margin: 0; }
+        .work-card.feature h3 { font-size: 2rem; }
+        .work-card.feature .role { font-size: 1.05rem; }
+        .work-card.feature .work-card-body { padding: 2rem 2.5rem 2.5rem; }
+        .work-card.feature p { font-size: 1.05rem; }
+        .feature-points {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;
         }
-
-        .work-card-link:hover svg {
-            transform: translateX(3px);
+        .feature-point {
+            background: var(--cream); border: 1px solid var(--border-light);
+            border-radius: 8px; padding: 1rem 1.1rem;
         }
+        .feature-point b { display: block; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.15rem; }
+        .feature-point span { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; display: block; }
 
-        /* Blog Section */
-        .blog {
-            background: var(--warm-white);
+        /* Energy section */
+        .energy { background: var(--warm-white); }
+        .energy-intro { max-width: 760px; margin: 0 auto 3rem; text-align: center; color: var(--text-muted); font-size: 1.05rem; }
+        .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-bottom: 4rem; }
+        .scope-card {
+            border: 1px solid var(--border-light); border-radius: 12px; padding: 2rem;
+            background: var(--cream);
         }
-
-        /* In Action / Gallery Section */
-        .gallery {
-            background: var(--warm-white);
+        .scope-card .num {
+            font-family: 'Crimson Pro', serif; font-size: 0.95rem; font-weight: 700;
+            color: var(--amber); letter-spacing: 0.1em; margin-bottom: 0.5rem;
         }
+        .scope-card h3 { font-size: 1.45rem; color: var(--navy); margin-bottom: 0.75rem; }
+        .scope-card p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.7; }
+        .scope-card ul { margin: 0.9rem 0 0 1.1rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+        .scope-card .src { display: inline-block; margin-top: 1rem; font-size: 0.8rem; font-weight: 600; }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+        .record { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .record h3, .expertise h3 { font-size: 1.6rem; color: var(--navy); margin-bottom: 1.25rem; }
+        .record-list { list-style: none; }
+        .record-list li { padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+        .record-list li:first-child { padding-top: 0; }
+        .record-list .stat {
+            font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 700;
+            color: var(--amber); line-height: 1.1;
         }
+        .record-list p { font-size: 0.93rem; color: var(--text-dark); margin-top: 0.2rem; }
+        .record-list a.cite { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
+        .record-list a.cite:hover { color: var(--amber); }
 
-        .gallery-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
+        .expertise-block { margin-bottom: 1.5rem; }
+        .expertise-block h4 {
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+            margin-bottom: 0.6rem;
         }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        .topic-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .topic-list span {
+            font-size: 0.82rem; padding: 0.35rem 0.8rem; border-radius: 100px;
+            background: var(--cream); border: 1px solid var(--border-light); color: var(--navy);
         }
+        .expertise-block ul { list-style: none; }
+        .expertise-block li { font-size: 0.93rem; padding: 0.35rem 0; color: var(--text-dark); }
+        .expertise-block li small { display: block; color: var(--text-muted); font-size: 0.8rem; }
+        .expertise-cta { font-size: 0.9rem; color: var(--text-muted); }
+        .expertise-cta a { font-weight: 600; }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
+        /* Gallery */
+        .gallery { background: var(--warm-white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .gallery-item { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(transparent, rgba(26, 39, 68, 0.9));
-            color: white;
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem;
+            background: linear-gradient(transparent, rgba(26, 39, 68, 0.9)); color: white;
         }
+        .gallery-caption h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .gallery-caption p { font-size: 0.8rem; opacity: 0.8; }
 
-        .gallery-caption h4 {
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .gallery-caption p {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            background: var(--navy);
-            color: white;
-            padding: 4rem 2rem;
-        }
-
-        .newsletter-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .newsletter .section-label {
-            color: var(--amber-light);
-        }
-
-        .newsletter h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input[type="email"] {
-            flex: 1;
-            padding: 1rem 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-        }
-
-        .newsletter-form input[type="email"]::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .newsletter-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--amber);
-        }
-
-        .newsletter-form button {
-            padding: 1rem 1.5rem;
-            background: var(--amber);
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--amber-light);
-        }
-
-        .newsletter-note {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 1rem;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
+        /* Blog */
+        .blog { background: var(--cream); }
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .blog-card {
-            background: var(--warm-white);
-            border-radius: 8px;
-            border: 1px solid var(--border-light);
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: var(--warm-white); border-radius: 8px; border: 1px solid var(--border-light);
+            overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; display: block;
         }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(26, 39, 68, 0.08);
-        }
-
+        .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(26, 39, 68, 0.08); }
         .blog-card-image {
-            height: 180px;
-            background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border-bottom: 1px solid var(--border-light);
+            height: 140px; background: var(--cream); display: flex; align-items: center;
+            justify-content: center; font-size: 2.6rem; border-bottom: 1px solid var(--border-light);
         }
-
-        .blog-card-content {
-            padding: 1.5rem;
-        }
-
-        .blog-card-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
+        .blog-card-content { padding: 1.5rem; }
+        .blog-card-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
         .blog-card-category {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--amber);
-            background: rgba(200, 146, 58, 0.1);
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--amber); background: rgba(200, 146, 58, 0.1); padding: 0.25rem 0.6rem; border-radius: 4px;
         }
+        .blog-card-date { font-size: 0.8rem; color: var(--text-muted); }
+        .blog-card h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.4; }
+        .blog-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        .blog-card-date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .blog-card h3 {
-            font-size: 1.15rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .blog-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* News Section */
-        .news {
-            background: var(--cream);
-        }
-
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
+        /* News + Press lists */
+        .news { background: var(--warm-white); }
+        .news-list { display: flex; flex-direction: column; gap: 1.25rem; }
         .news-item {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 2rem;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background: var(--warm-white);
-            border-radius: 8px;
-            border: 1px solid var(--border-light);
-            transition: all 0.2s ease;
+            display: grid; grid-template-columns: 110px 1fr auto; gap: 2rem; align-items: center;
+            padding: 1.5rem 2rem; background: var(--cream); border-radius: 8px;
+            border: 1px solid var(--border-light); transition: all 0.2s ease;
         }
-
-        .news-item:hover {
-            border-color: var(--amber);
-            box-shadow: 0 8px 20px rgba(26, 39, 68, 0.06);
-        }
-
-        .news-date {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .news-content h4 {
-            font-size: 1.1rem;
-            color: var(--navy);
-            margin-bottom: 0.25rem;
-        }
-
-        .news-content p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
+        .news-item:hover { border-color: var(--amber); box-shadow: 0 8px 20px rgba(26, 39, 68, 0.06); }
+        .news-date { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+        .news-content h4 { font-size: 1.1rem; color: var(--navy); margin-bottom: 0.25rem; }
+        .news-content p { font-size: 0.9rem; color: var(--text-muted); }
         .news-source {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--amber);
-            background: rgba(200, 146, 58, 0.1);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            white-space: nowrap;
+            font-size: 0.8rem; font-weight: 600; color: var(--amber);
+            background: rgba(200, 146, 58, 0.1); padding: 0.4rem 0.8rem; border-radius: 4px; white-space: nowrap;
+        }
+        .press { background: var(--cream); }
+        .press .news-item { background: var(--warm-white); }
+
+        /* Bio */
+        .bio { background: var(--warm-white); }
+        .bio-content { max-width: 720px; margin: 0 auto; }
+        .bio-text { font-family: 'Crimson Pro', Georgia, serif; font-size: 1.35rem; line-height: 1.9; color: var(--text-dark); }
+        .bio-text p { margin-bottom: 1.5rem; }
+        .bio-text a { color: var(--amber); border-bottom: 1px solid transparent; }
+        .bio-text a:hover { border-bottom-color: var(--amber); }
+        .views-note {
+            font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted);
+            border-left: 3px solid var(--amber); padding: 0.6rem 0 0.6rem 1rem; margin-top: 0.5rem;
         }
 
-        /* Press Section */
-        .press {
-            background: var(--warm-white);
-        }
-
-        .press .news-item {
-            background: var(--cream);
-        }
-
-        /* Bio Section */
-        .bio {
-            background: var(--warm-white);
-        }
-
-        .bio-content {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .bio-text {
-            font-family: 'Crimson Pro', Georgia, serif;
-            font-size: 1.35rem;
-            line-height: 1.9;
-            color: var(--text-dark);
-        }
-
-        .bio-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .bio-text a {
-            color: var(--amber);
-            border-bottom: 1px solid transparent;
-        }
-
-        .bio-text a:hover {
-            border-bottom-color: var(--amber);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--cream);
-            color: var(--text-dark);
-        }
-
-        .contact .section-label {
-            color: var(--amber);
-        }
-
-        .contact .section-title {
-            color: var(--navy);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
+        /* Contact */
+        .contact { background: var(--cream); }
+        .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 1rem; }
         .contact-card {
-            background: var(--warm-white);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1.75rem;
-            text-align: center;
-            transition: all 0.2s ease;
+            background: var(--warm-white); border: 1px solid var(--border-light); border-radius: 8px;
+            padding: 1.75rem; text-align: center; transition: all 0.2s ease;
         }
+        .contact-card:hover { border-color: var(--amber); box-shadow: 0 8px 20px rgba(26, 39, 68, 0.08); transform: translateY(-3px); }
+        .contact-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+        .contact-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--navy); }
+        .contact-card p { font-size: 0.85rem; color: var(--text-muted); }
 
-        .contact-card:hover {
-            border-color: var(--amber);
-            box-shadow: 0 8px 20px rgba(26, 39, 68, 0.08);
-            transform: translateY(-3px);
+        /* Newsletter signup */
+        .newsletter { background: var(--navy); color: white; padding: 4.5rem 2rem; }
+        .newsletter-container { max-width: 600px; margin: 0 auto; text-align: center; }
+        .newsletter .section-label { color: var(--amber-light); }
+        .newsletter h2 { color: white; font-size: 2rem; margin-bottom: 1rem; }
+        .newsletter p { color: rgba(255, 255, 255, 0.72); margin-bottom: 1.75rem; }
+        .signup-embed {
+            width: 100%; max-width: 480px; height: 150px; border: 0; border-radius: 8px;
+            background: white; display: block; margin: 0 auto;
         }
-
-        .contact-icon {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--navy);
-        }
-
-        .contact-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .contact-card a {
-            color: var(--navy);
-        }
-
-        .contact-card a:hover {
-            color: var(--amber);
-        }
+        .newsletter-note { font-size: 0.85rem; color: rgba(255, 255, 255, 0.55) !important; margin: 1rem 0 0 !important; }
+        .newsletter-note a { color: var(--amber-light); }
 
         /* Footer */
-        footer {
-            background: var(--navy);
-            color: white;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
+        footer { background: var(--navy); color: white; padding: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
         .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between;
+            align-items: center; gap: 1.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);
         }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
+        .footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255, 255, 255, 0.55); }
+        .footer-links a:hover { color: white; }
+        .footer-note { max-width: 1100px; margin: 1rem auto 0; font-size: 0.75rem; color: rgba(255,255,255,0.38); }
 
         /* Responsive */
         @media (max-width: 900px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .hero-roles {
-                justify-content: center;
-            }
-
-            .hero-links {
-                justify-content: center;
-            }
-
-            .hero-image {
-                order: -1;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .work-grid,
-            .blog-grid,
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .news-item {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-
-            .news-source {
-                justify-self: start;
-            }
-
-            .section-header-left {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-intro { margin-left: auto; margin-right: auto; }
+            .hero-roles, .hero-links { justify-content: center; }
+            .hero-image { order: -1; max-width: 300px; margin: 0 auto; }
+            .work-grid, .blog-grid, .gallery-grid, .scope-grid, .record, .feature-points { grid-template-columns: 1fr; }
+            .work-card.feature .work-card-header { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-item { grid-template-columns: 1fr; gap: 0.75rem; }
+            .news-source { justify-self: start; }
+            .section-header-left { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .nav-links { gap: 1.2rem; }
         }
-
         @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            section { padding: 4rem 1.5rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; text-align: center; }
         }
-
-        /* Mobile nav open state */
         .nav-links.open {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            flex-direction: column;
-            background: var(--warm-white);
-            padding: 1rem 2rem 2rem;
-            border-bottom: 1px solid var(--border-light);
-            gap: 1rem;
+            display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column;
+            background: var(--warm-white); padding: 1rem 2rem 2rem;
+            border-bottom: 1px solid var(--border-light); gap: 1rem;
         }
 
-        .loading-card {
-            opacity: 0.6;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Scroll animations — only hide content when JS is running to reveal it */
+        .js .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .js .fade-in.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .js .fade-in { opacity: 1; transform: none; transition: none; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
@@ -967,33 +494,37 @@
             <a href="#" class="nav-logo">JE<span>_</span></a>
             <div class="nav-links">
                 <a href="#work">Work</a>
-                <a href="#gallery">Photos</a>
-                <a href="#blog">Blog</a>
-                <a href="#news">News</a>
                 <a href="#press">Press</a>
                 <a href="#about">About</a>
+                <a href="#news">News</a>
+                <a href="#blog">Blog</a>
+                <a href="#gallery">Photos</a>
                 <a href="#contact">Contact</a>
             </div>
             <button class="mobile-menu" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Justin Evans</h1>
-                <p class="hero-intro">Energy regulator, local news founder, and elected official. Working at the intersection of infrastructure, technology, and civic engagement on Massachusetts' South Shore.</p>
-                
+                <p class="hero-title">
+                    Assistant Director, Pipeline Safety Division
+                    <span>Massachusetts Department of Public Utilities</span>
+                </p>
+                <p class="hero-secondary">Founder, South Shore News<b>·</b>Chair, Whitman Select Board</p>
+                <p class="hero-intro">Working on the safety of Massachusetts' natural gas pipelines, LNG facilities and emerging networked geothermal systems.</p>
+
                 <div class="hero-roles">
-                    <span class="role-tag">Pipeline Safety</span>
-                    <span class="role-tag">AI Journalism</span>
-                    <span class="role-tag">Local Government</span>
+                    <span class="role-tag primary">Pipeline Safety</span>
+                    <span class="role-tag primary">Energy Infrastructure</span>
                     <span class="role-tag">Mechanical Engineer</span>
+                    <span class="role-tag">Local Government</span>
+                    <span class="role-tag">AI Journalism</span>
                 </div>
 
                 <div class="hero-links">
@@ -1001,13 +532,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         LinkedIn
                     </a>
+                    <a href="#energy" class="hero-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        Pipeline Safety
+                    </a>
                     <a href="https://southshore.news" class="hero-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg>
                         South Shore News
-                    </a>
-                    <a href="https://votejustinevans.com" class="hero-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                        Campaign
                     </a>
                     <a href="mailto:justin@justinevans.net" class="hero-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
@@ -1021,36 +552,60 @@
         </div>
     </section>
 
-    <!-- Work Section -->
+    <!-- As featured in -->
+    <div class="featured">
+        <div class="featured-inner">
+            <span class="featured-label">As featured in</span>
+            <a class="featured-outlet" href="#press">The Boston Globe</a>
+            <a class="featured-outlet" href="#press">WRKO</a>
+            <a class="featured-outlet" href="#press">Media Nation</a>
+        </div>
+    </div>
+
+    <!-- Work -->
     <section class="work" id="work">
         <div class="section-container">
             <div class="section-header">
                 <p class="section-label fade-in">What I Do</p>
-                <h2 class="section-title fade-in">Three Hats</h2>
+                <h2 class="section-title fade-in">Work</h2>
             </div>
 
             <div class="work-grid">
-                <!-- MA DPU -->
-                <div class="work-card fade-in">
+                <!-- Energy regulation — featured -->
+                <div class="work-card feature fade-in">
                     <div class="work-card-header">
-                        <div class="work-card-icon">⚡</div>
-                        <p class="work-card-label">Energy Regulation</p>
-                        <h3>MA Dept. of Public Utilities</h3>
+                        <div class="work-card-icon icon-energy">⚡</div>
+                        <div>
+                            <p class="work-card-label">Energy Regulation</p>
+                            <h3>Massachusetts Department of Public Utilities</h3>
+                            <p class="role">Assistant Director, Pipeline Safety Division</p>
+                        </div>
                     </div>
                     <div class="work-card-body">
-                        <p>Assistant Director of the Pipeline Safety Division. Overseeing pipeline infrastructure, natural gas operations, LNG facilities, and pioneering safety guidelines for utility networked geothermal systems. Seven years ensuring Massachusetts' energy infrastructure is safe and reliable.</p>
+                        <p>The Pipeline Safety Division is the DPU's enforcement arm for intrastate pipeline safety. Seven years at the Department, working on inspection, compliance and safety guidance for the systems that carry gas and heat to Massachusetts homes and businesses.</p>
+                        <div class="feature-points">
+                            <div class="feature-point"><b>Gas pipelines</b><span>Distribution operators, municipal gas departments, Dig Safe enforcement</span></div>
+                            <div class="feature-point"><b>LNG facilities</b><span>Inspections of liquefied natural gas plants under federal Part 193</span></div>
+                            <div class="feature-point"><b>Networked geothermal</b><span>The state's first safety guidelines for utility systems</span></div>
+                        </div>
+                        <a href="#energy" class="work-card-link">
+                            Scope and record
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- South Shore News -->
                 <div class="work-card fade-in">
                     <div class="work-card-header">
-                        <div class="work-card-icon">📰</div>
-                        <p class="work-card-label">AI Journalism</p>
+                        <div class="work-card-icon icon-news">📰</div>
+                        <p class="work-card-label">Local News</p>
                         <h3>South Shore News</h3>
+                        <p class="role">Founder and Editor</p>
                     </div>
                     <div class="work-card-body">
-                        <p>Founded in 2024, South Shore News is an AI-powered hyperlocal news publication covering municipal government across 19 South Shore communities. Using technology to bring transparency to local government—one town meeting at a time. Over 2,000 stories published and over 4,000 subscribers.</p>
+                        <p>Founded in 2024, South Shore News uses AI tools to cover municipal government across 19 South Shore communities. Over 2,000 stories published and over 4,000 subscribers.</p>
+                        <p class="disclosure">Disclosure: I chair the Whitman Select Board. Whitman is one of the 19 towns South Shore News covers.</p>
                         <a href="https://southshore.news" class="work-card-link">
                             Read the latest
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1061,14 +616,15 @@
                 <!-- Select Board -->
                 <div class="work-card fade-in">
                     <div class="work-card-header">
-                        <div class="work-card-icon">🏛️</div>
+                        <div class="work-card-icon icon-gov">🏛️</div>
                         <p class="work-card-label">Local Government</p>
                         <h3>Whitman Select Board</h3>
+                        <p class="role">Chair</p>
                     </div>
                     <div class="work-card-body">
-                        <p>Three-term elected member serving since 2019. Led efforts on Community Preservation Act adoption, school agreement reform, and municipal energy aggregation. Focused on fiscal sustainability, economic development, and public communications.</p>
-                        <a href="https://secure.actblue.com/donate/votejustinevans" class="work-card-link">
-                            Support the campaign
+                        <p>Elected in 2019 and now in my third term. Worked on Community Preservation Act adoption, school agreement reform and municipal energy aggregation, with a focus on fiscal sustainability and public communication.</p>
+                        <a href="https://evansexplains.substack.com" class="work-card-link">
+                            Monthly Select Board updates
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
                     </div>
@@ -1077,87 +633,176 @@
         </div>
     </section>
 
-    <!-- In Action Section -->
-    <section class="gallery" id="gallery">
+    <!-- Energy regulation detail -->
+    <section class="energy" id="energy">
         <div class="section-container">
             <div class="section-header">
-                <p class="section-label fade-in">In Action</p>
-                <h2 class="section-title fade-in">Out in the Community</h2>
+                <p class="section-label fade-in">Energy Regulation</p>
+                <h2 class="section-title fade-in">Pipeline Safety in Massachusetts</h2>
+            </div>
+            <p class="energy-intro fade-in">The DPU's Pipeline Safety Division ensures that natural gas distribution companies, municipal gas departments, steam distribution companies and other intrastate operators comply with state and federal pipeline safety regulations, and enforces the state's Dig Safe law to prevent excavation damage.</p>
+
+            <div class="scope-grid">
+                <div class="scope-card fade-in">
+                    <p class="num">01</p>
+                    <h3>Gas pipelines</h3>
+                    <p>Inspection and enforcement for the companies and municipal departments that operate the state's gas distribution systems.</p>
+                    <ul>
+                        <li>Standard, construction and integrity management inspections</li>
+                        <li>Operator qualification and incident investigations</li>
+                        <li>Dig Safe enforcement and damage-prevention data</li>
+                    </ul>
+                    <a class="src" href="https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2025-04/ma-2023-gas-program-evaluation.pdf" target="_blank" rel="noopener">Source: PHMSA 2023 evaluation ↗</a>
+                </div>
+                <div class="scope-card fade-in">
+                    <p class="num">02</p>
+                    <h3>LNG facilities</h3>
+                    <p>Inspection of liquefied natural gas facilities under federal Part 193 standards, including procedures, records and field transfer operations.</p>
+                    <ul>
+                        <li>Part 193 LNG inspections on a scheduled cycle</li>
+                        <li>2024 LNG facility inspection observed by PHMSA as part of the state's program evaluation</li>
+                    </ul>
+                    <a class="src" href="https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2025-04/ma-2023-gas-program-evaluation.pdf" target="_blank" rel="noopener">Source: PHMSA 2023 evaluation ↗</a>
+                </div>
+                <div class="scope-card fade-in">
+                    <p class="num">03</p>
+                    <h3>Networked geothermal</h3>
+                    <p>In July 2024 the Division issued Massachusetts' first safety guidelines for utility networked geothermal systems, closed-loop networks that connect ground-source heat pumps.</p>
+                    <ul>
+                        <li>Notice of intent before construction</li>
+                        <li>Emergency response and operator qualification plans</li>
+                        <li>Annual reporting and periodic inspections</li>
+                    </ul>
+                    <a class="src" href="https://www.mass.gov/news/dpu-establishes-network-geothermal-guidelines" target="_blank" rel="noopener">Source: DPU press release ↗</a>
+                </div>
             </div>
 
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="speaking-napsr.jpg" alt="Justin Evans presenting at NAPSR conference">
-                    <div class="gallery-caption">
-                        <h4>NAPSR National Meeting</h4>
-                        <p>Presenting on pipeline safety</p>
-                    </div>
+            <div class="record">
+                <div class="fade-in">
+                    <h3>Program record</h3>
+                    <ul class="record-list">
+                        <li>
+                            <div class="stat">100 / 100</div>
+                            <p>Score on PHMSA's 2023 evaluation of the Massachusetts gas pipeline safety program.</p>
+                            <a class="cite" href="https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2025-04/ma-2023-gas-program-evaluation.pdf" target="_blank" rel="noopener">PHMSA 2023 Gas State Program Evaluation ↗</a>
+                        </li>
+                        <li>
+                            <div class="stat">1.6 vs. 2.52</div>
+                            <p>Excavation damages per 1,000 locate requests in Massachusetts in 2023, against a national average of 2.52.</p>
+                            <a class="cite" href="https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2025-04/ma-2023-gas-program-evaluation.pdf" target="_blank" rel="noopener">PHMSA 2023 Gas State Program Evaluation ↗</a>
+                        </li>
+                        <li>
+                            <div class="stat">July 2024</div>
+                            <p>The state's first networked geothermal safety guidelines, issued by the Pipeline Safety Division.</p>
+                            <a class="cite" href="https://www.mass.gov/doc/dpu-networked-geothermal-guidelines/download" target="_blank" rel="noopener">DPU networked geothermal guidelines ↗</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="gallery-item fade-in">
-                    <img src="speaking-rally.jpg" alt="Justin Evans speaking at rally">
-                    <div class="gallery-caption">
-                        <h4>Community Rally</h4>
-                        <p>Speaking out on local issues</p>
+
+                <div class="expertise fade-in">
+                    <h3>Speaking and expertise</h3>
+                    <div class="expertise-block">
+                        <h4>Topics</h4>
+                        <div class="topic-list">
+                            <span>Gas pipeline safety regulation</span>
+                            <span>LNG facility oversight</span>
+                            <span>Networked geothermal safety</span>
+                            <span>Excavation damage prevention</span>
+                            <span>Gas transition and decarbonization</span>
+                            <span>AI and local news</span>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="lt-governor.jpg" alt="Justin Evans with Lt. Governor Kim Driscoll">
-                    <div class="gallery-caption">
-                        <h4>With Lt. Gov. Driscoll</h4>
-                        <p>Healey-Driscoll campaign event</p>
+                    <div class="expertise-block">
+                        <h4>Talks and program work</h4>
+                        <ul>
+                            <li>National Association of Pipeline Safety Representatives (NAPSR) national meeting
+                                <small>Presentation on pipeline safety</small></li>
+                            <li>Massachusetts agency representative, PHMSA state program evaluation
+                                <small>2023 evaluation, conducted August 2024</small></li>
+                            <li>Interviews on AI-assisted local news
+                                <small>The Boston Globe, WRKO</small></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="scituate-light.jpg" alt="Justin Evans at Scituate Lighthouse">
-                    <div class="gallery-caption">
-                        <h4>Scituate Light</h4>
-                        <p>Covering 19 South Shore communities</p>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="ssn-vest.jpg" alt="South Shore News lighthouse logo on embroidered vest">
-                    <div class="gallery-caption">
-                        <h4>South Shore News</h4>
-                        <p>Flying the lighthouse colors</p>
-                    </div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="governor-healey.jpg" alt="Justin Evans with Governor Maura Healey">
-                    <div class="gallery-caption">
-                        <h4>With Gov. Healey</h4>
-                        <p>Campaign event</p>
-                    </div>
+                    <p class="expertise-cta">Speaking inquiries: <a href="mailto:justin@justinevans.net">justin@justinevans.net</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section class="blog" id="blog">
+    <!-- Press -->
+    <section class="press" id="press">
         <div class="section-container">
             <div class="section-header-left">
                 <div>
-                    <p class="section-label fade-in">Evans Explains</p>
-                    <h2 class="section-title fade-in">From the Blog</h2>
+                    <p class="section-label fade-in">In the Media</p>
+                    <h2 class="section-title fade-in">Press</h2>
                 </div>
-                <a href="https://evansexplains.substack.com" class="section-link fade-in">
-                    View all posts
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
             </div>
 
-            <div class="blog-grid" id="blog-grid">
-                <div class="blog-card fade-in loading-card">
-                    <div class="blog-card-image">⏳</div>
-                    <div class="blog-card-content">
-                        <p>Loading posts...</p>
+            <div class="news-list">
+                <a href="https://www.iheart.com/podcast/1248-new-england-business-repo-155159407/episode/domestic-violence-protections-digital-currencies-and-the-future-of-regional-air-travel-337214413/" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Jun 21, 2026</span>
+                    <div class="news-content">
+                        <h4>New England Business Report: Domestic Violence Protections, Digital Currencies and the Future of Regional Air Travel</h4>
+                        <p>The episode includes an interview with Justin Evans, founder and editor of South Shore News, on AI-generated local news.</p>
                     </div>
+                    <span class="news-source">WRKO</span>
+                </a>
+                <a href="https://www.bostonglobe.com/2026/06/12/business/south-shore-local-news-ai/" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Jun 12, 2026</span>
+                    <div class="news-content">
+                        <h4>A South Shore AI-generated news site put up a paywall. Hundreds of readers, including a police chief, opened their wallets.</h4>
+                        <p>Profile of South Shore News after its April paywall launch drew 350 paid subscribers.</p>
+                    </div>
+                    <span class="news-source">The Boston Globe</span>
+                </a>
+                <a href="https://dankennedy.net/2026/06/12/how-ai-generated-local-news-coverage-undermines-those-who-are-trying-to-do-it-the-right-way/" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Jun 12, 2026</span>
+                    <div class="news-content">
+                        <h4>How AI-generated local news coverage undermines those who are trying to do it the right way</h4>
+                        <p>Northeastern journalism professor Dan Kennedy on South Shore News, AI-assisted meeting coverage and the fight over legal notices.</p>
+                    </div>
+                    <span class="news-source">Media Nation</span>
+                </a>
+                <a href="https://www.bostonglobe.com/2025/03/01/business/local-news-artificial-intelligence-startups-town-meetings/" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Mar 1, 2025</span>
+                    <div class="news-content">
+                        <h4>The use of AI in local news faces a substantial obstacle: trust</h4>
+                        <p>Feature on Massachusetts AI local news startups, including South Shore News, and the challenge of earning reader trust.</p>
+                    </div>
+                    <span class="news-source">The Boston Globe</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bio -->
+    <section class="bio" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <p class="section-label fade-in">Background</p>
+                <h2 class="section-title fade-in">About Me</h2>
+            </div>
+
+            <div class="bio-content fade-in">
+                <div class="bio-text">
+                    <p>I'm a Whitman native with a Master's in Energy Systems and a BS in Mechanical Engineering from Northeastern University. My career has focused on the intersection of energy infrastructure, public safety and policy, first as an engineer and now as a regulator.</p>
+
+                    <p>I'm an Assistant Director of the Pipeline Safety Division at the <a href="https://www.mass.gov/orgs/department-of-public-utilities">Massachusetts Department of Public Utilities</a>, where I've worked for seven years. The Division earned a perfect score on <a href="https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2025-04/ma-2023-gas-program-evaluation.pdf">PHMSA's 2023 evaluation</a> of the state program and issued <a href="https://www.mass.gov/news/dpu-establishes-network-geothermal-guidelines">Massachusetts' first safety guidelines</a> for utility networked geothermal systems.</p>
+
+                    <p>In 2024, I founded <a href="https://southshore.news">South Shore News</a> to solve a problem I saw in local government: important decisions being made without public awareness. It uses AI tools to process meeting video and draft coverage of 19 communities that traditional media has largely left behind.</p>
+
+                    <p>I've served on the Whitman Select Board since 2019 and currently chair it.</p>
+
+                    <p>I live in Whitman with my wife and daughter. When I'm not at work or in a town meeting, you'll find me cooking, working on home electrification projects, or walking my dog.</p>
+
+                    <p class="views-note">Views expressed on this site are my own and do not represent the Massachusetts Department of Public Utilities.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News/Press Section -->
+    <!-- South Shore News feed (rendered at build time by scripts/render-feeds.mjs) -->
     <section class="news" id="news">
         <div class="section-container">
             <div class="section-header-left">
@@ -1171,97 +816,145 @@
                 </a>
             </div>
 
-            <div class="news-list" id="news-list">
-                <div class="news-item fade-in loading-card">
-                    <span class="news-date">...</span>
+            <div class="news-list">
+                <!-- FEED:ssn:start -->
+                <a href="https://www.southshore.news/p/duxbury-extends-north-hill-golf-deal" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Nov 15, 2026</span>
                     <div class="news-content">
-                        <h4>Loading latest news...</h4>
-                        <p>Fetching from South Shore News</p>
+                        <h4>Duxbury Extends North Hill Golf Deal Three Years</h4>
+                        <p>Nuclear Committee Warns on Pilgrim Evaporation</p>
                     </div>
-                    <span class="news-source">⏳</span>
-                </div>
+                    <span class="news-source">South Shore News</span>
+                </a>
+                <a href="https://www.southshore.news/p/south-shore-newsletter-one-time-money" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Nov 15, 2026</span>
+                    <div class="news-content">
+                        <h4>South Shore News...letter: One-Time Money, Permanent Gaps</h4>
+                        <p>Week of Nov.</p>
+                    </div>
+                    <span class="news-source">South Shore News</span>
+                </a>
+                <a href="https://www.southshore.news/p/cohasset-leans-toward-surveillance" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Nov 14, 2026</span>
+                    <div class="news-content">
+                        <h4>Cohasset Leans Toward Surveillance Working Group as Flock Camera Contract Nears End</h4>
+                        <p>COHASSET — Nov.</p>
+                    </div>
+                    <span class="news-source">South Shore News</span>
+                </a>
+                <a href="https://www.southshore.news/p/plymouth-county-governance-crisis" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Nov 14, 2026</span>
+                    <div class="news-content">
+                        <h4>Plymouth County Governance Crisis</h4>
+                        <p>Listen now (18 mins) | Superior Court Judge Steps In as Standoff Reaches Turning Point</p>
+                    </div>
+                    <span class="news-source">South Shore News</span>
+                </a>
+                <a href="https://www.southshore.news/p/weymouth-adopts-civil-law-enforcement" class="news-item fade-in" target="_blank" rel="noopener">
+                    <span class="news-date">Nov 13, 2026</span>
+                    <div class="news-content">
+                        <h4>Weymouth Adopts Civil Law Enforcement Policy</h4>
+                        <p>Committee Splits 4-2 on Information-Request Rule</p>
+                    </div>
+                    <span class="news-source">South Shore News</span>
+                </a>
+                <!-- FEED:ssn:end -->
             </div>
         </div>
     </section>
 
-    <!-- Press / Media Appearances Section -->
-    <section class="press" id="press">
+    <!-- Blog feed (rendered at build time) -->
+    <section class="blog" id="blog">
         <div class="section-container">
             <div class="section-header-left">
                 <div>
-                    <p class="section-label fade-in">In the Media</p>
-                    <h2 class="section-title fade-in">Media Appearances</h2>
+                    <p class="section-label fade-in">Evans Explains</p>
+                    <h2 class="section-title fade-in">Whitman Select Board Updates</h2>
                 </div>
+                <a href="https://evansexplains.substack.com" class="section-link fade-in">
+                    View all posts
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
 
-            <div class="news-list">
-                <a href="https://www.iheart.com/podcast/1248-new-england-business-repo-155159407/episode/domestic-violence-protections-digital-currencies-and-the-future-of-regional-air-travel-337214413/" class="news-item fade-in" target="_blank" rel="noopener">
-                    <span class="news-date">Jun 21, 2026</span>
-                    <div class="news-content">
-                        <h4>New England Business Report: AI-generated local news on the South Shore</h4>
-                        <p>Radio interview with Justin Evans, editor and founder of South Shore News, on covering town government with AI.</p>
+            <div class="blog-grid">
+                <!-- FEED:blog:start -->
+                <a href="https://evansexplains.substack.com/p/october-whitman-updates-c26" class="blog-card fade-in" target="_blank" rel="noopener">
+                    <div class="blog-card-image">📋</div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category">Evans Explains</span>
+                            <span class="blog-card-date">Nov 2, 2026</span>
+                        </div>
+                        <h3>October Whitman Updates</h3>
+                        <p>The Trash Rate: $435 Stands</p>
                     </div>
-                    <span class="news-source">WRKO</span>
                 </a>
-                <a href="https://www.bostonglobe.com/2026/06/12/business/south-shore-local-news-ai/" class="news-item fade-in" target="_blank" rel="noopener">
-                    <span class="news-date">Jun 12, 2026</span>
-                    <div class="news-content">
-                        <h4>A South Shore AI-generated news site put up a paywall. Hundreds of readers, including a police chief, opened their wallets.</h4>
-                        <p>Profile of South Shore News after its April paywall launch drew 350 paid subscribers — a sign of a real audience for AI-generated local news.</p>
+                <a href="https://evansexplains.substack.com/p/september-whitman-updates-f0c" class="blog-card fade-in" target="_blank" rel="noopener">
+                    <div class="blog-card-image">📋</div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category">Evans Explains</span>
+                            <span class="blog-card-date">Oct 3, 2026</span>
+                        </div>
+                        <h3>September Whitman Updates</h3>
+                        <p>September was a month of new faces and old bills.</p>
                     </div>
-                    <span class="news-source">The Boston Globe</span>
                 </a>
-                <a href="https://dankennedy.net/2026/06/12/how-ai-generated-local-news-coverage-undermines-those-who-are-trying-to-do-it-the-right-way/" class="news-item fade-in" target="_blank" rel="noopener">
-                    <span class="news-date">Jun 12, 2026</span>
-                    <div class="news-content">
-                        <h4>How AI-generated local news coverage undermines those who are trying to do it the right way</h4>
-                        <p>Northeastern journalism professor Dan Kennedy on South Shore News, AI-assisted meeting coverage, and the fight over legal notices.</p>
+                <a href="https://evansexplains.substack.com/p/august-whitman-updates" class="blog-card fade-in" target="_blank" rel="noopener">
+                    <div class="blog-card-image">📋</div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-card-category">Evans Explains</span>
+                            <span class="blog-card-date">Sep 1, 2026</span>
+                        </div>
+                        <h3>August Whitman Updates</h3>
+                        <p>The Budget Picture: Nearly $1M Deficit, South Shore Tech, and a January Vote</p>
                     </div>
-                    <span class="news-source">Media Nation</span>
                 </a>
-                <a href="https://www.bostonglobe.com/2025/03/01/business/local-news-artificial-intelligence-startups-town-meetings/" class="news-item fade-in" target="_blank" rel="noopener">
-                    <span class="news-date">Mar 1, 2025</span>
-                    <div class="news-content">
-                        <h4>The use of AI in local news faces a substantial obstacle: trust</h4>
-                        <p>Feature on Massachusetts AI local news startups — including South Shore News — and the challenge of earning reader trust.</p>
-                    </div>
-                    <span class="news-source">The Boston Globe</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=_DQrEW1Abz0" class="news-item fade-in" target="_blank" rel="noopener">
-                    <span class="news-date">Jul 2023</span>
-                    <div class="news-content">
-                        <h4>CrossTalk feat. Justin Evans, Whitman Selectman</h4>
-                        <p>Interview on local issues facing Whitman, including the pending auction of the Peaceful Meadows property.</p>
-                    </div>
-                    <span class="news-source">WHCA-TV</span>
-                </a>
+                <!-- FEED:blog:end -->
             </div>
         </div>
     </section>
 
-    <!-- Bio Section -->
-    <section class="bio" id="about">
+    <!-- Photos -->
+    <section class="gallery" id="gallery">
         <div class="section-container">
             <div class="section-header">
-                <p class="section-label fade-in">Background</p>
-                <h2 class="section-title fade-in">About Me</h2>
+                <p class="section-label fade-in">In Action</p>
+                <h2 class="section-title fade-in">Photos</h2>
             </div>
 
-            <div class="bio-content fade-in">
-                <div class="bio-text">
-                    <p>I'm a Whitman native with a Master's in Energy Systems and a BS in Mechanical Engineering from Northeastern University. My career has focused on the intersection of energy infrastructure, public safety, and policy—first as an engineer, now as a regulator.</p>
-                    
-                    <p>At the <a href="https://www.mass.gov/orgs/department-of-public-utilities">Massachusetts Department of Public Utilities</a>, I've spent seven years working to keep our pipeline infrastructure safe. My team achieved perfect PHMSA audit scores and developed first-in-nation safety guidelines for utility networked geothermal systems.</p>
-                    
-                    <p>In 2024, I founded <a href="https://southshore.news">South Shore News</a> to solve a problem I saw in local government: important decisions being made without public awareness. Using AI tools to process meeting transcripts and generate coverage, we're bringing transparency to 19 communities that traditional media has largely abandoned.</p>
-                    
-                    <p>I live in Whitman with my wife and daughter. When I'm not at work or in a town meeting, you'll find me cooking, working on home electrification projects, or walking my dog.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="speaking-napsr.jpg" alt="Justin Evans presenting at a NAPSR meeting" loading="lazy">
+                    <div class="gallery-caption"><h4>NAPSR National Meeting</h4><p>Presenting on pipeline safety</p></div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="scituate-light.jpg" alt="Justin Evans at Scituate Lighthouse" loading="lazy">
+                    <div class="gallery-caption"><h4>Scituate Light</h4><p>South Shore News covers 19 communities</p></div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="ssn-vest.jpg" alt="South Shore News lighthouse logo on embroidered vest" loading="lazy">
+                    <div class="gallery-caption"><h4>South Shore News</h4><p>Flying the lighthouse colors</p></div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="speaking-rally.jpg" alt="Justin Evans speaking at a community event" loading="lazy">
+                    <div class="gallery-caption"><h4>Community Event</h4><p>Speaking on local issues</p></div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="governor-healey.jpg" alt="Justin Evans with Governor Maura Healey" loading="lazy">
+                    <div class="gallery-caption"><h4>With Gov. Maura Healey</h4></div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="lt-governor.jpg" alt="Justin Evans with Lt. Governor Kim Driscoll" loading="lazy">
+                    <div class="gallery-caption"><h4>With Lt. Gov. Kim Driscoll</h4></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact" id="contact">
         <div class="section-container">
             <div class="section-header">
@@ -1271,40 +964,29 @@
 
             <div class="contact-grid">
                 <a href="mailto:justin@justinevans.net" class="contact-card fade-in">
-                    <div class="contact-icon">✉️</div>
-                    <h4>Email</h4>
-                    <p>justin@justinevans.net</p>
+                    <div class="contact-icon">✉️</div><h4>Email</h4><p>justin@justinevans.net</p>
                 </a>
                 <a href="https://www.linkedin.com/in/evansjustin" class="contact-card fade-in">
-                    <div class="contact-icon">💼</div>
-                    <h4>LinkedIn</h4>
-                    <p>Professional network</p>
+                    <div class="contact-icon">💼</div><h4>LinkedIn</h4><p>Professional network</p>
                 </a>
                 <a href="https://southshore.news" class="contact-card fade-in">
-                    <div class="contact-icon">📰</div>
-                    <h4>South Shore News</h4>
-                    <p>4,000+ subscribers</p>
+                    <div class="contact-icon">📰</div><h4>South Shore News</h4><p>4,000+ subscribers</p>
                 </a>
-                <a href="https://votejustinevans.com" class="contact-card fade-in">
-                    <div class="contact-icon">🗳️</div>
-                    <h4>Campaign</h4>
-                    <p>VoteJustinEvans.com</p>
+                <a href="https://evansexplains.substack.com" class="contact-card fade-in">
+                    <div class="contact-icon">✍️</div><h4>Evans Explains</h4><p>Select Board updates</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    <!-- Newsletter signup -->
     <section class="newsletter">
         <div class="newsletter-container">
-            <p class="section-label fade-in">Stay Informed</p>
-            <h2 class="fade-in">Subscribe to South Shore News</h2>
-            <p class="fade-in">Hyperlocal coverage of municipal government across 19 South Shore communities. AI-powered transparency for your town.</p>
-            <form class="newsletter-form fade-in" action="https://southshore.news/subscribe" method="get" target="_blank">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-            <p class="newsletter-note fade-in">Join over 4,000 subscribers. Free newsletter.</p>
+            <p class="section-label">Stay Informed</p>
+            <h2>Subscribe to South Shore News</h2>
+            <p>Coverage of municipal government across 19 South Shore communities, in your inbox.</p>
+            <iframe class="signup-embed" src="https://www.southshore.news/embed" title="Subscribe to South Shore News" frameborder="0" scrolling="no" loading="lazy"></iframe>
+            <p class="newsletter-note">Join over 4,000 subscribers. Or subscribe at <a href="https://southshore.news/subscribe">southshore.news</a>.</p>
         </div>
     </section>
 
@@ -1314,149 +996,30 @@
             <p>© 2026 Justin Evans</p>
             <div class="footer-links">
                 <a href="https://southshore.news">South Shore News</a>
-                <a href="https://votejustinevans.com">Campaign</a>
                 <a href="https://www.linkedin.com/in/evansjustin">LinkedIn</a>
+                <a href="https://votejustinevans.com">votejustinevans.com</a>
             </div>
         </div>
+        <p class="footer-note">Views expressed here are my own and do not represent the Massachusetts Department of Public Utilities.</p>
     </footer>
 
     <script>
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
 
-        // Scroll animation observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Mobile menu
-        document.querySelector('.mobile-menu').addEventListener('click', () => {
-            const links = document.querySelector('.nav-links');
-            links.classList.toggle('open');
-        });
-
-        // RSS Feed Configuration
-        const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
-        const BLOG_FEED = 'https://evansexplains.substack.com/feed';
-        const NEWS_FEED = 'https://www.southshore.news/feed';
-
-        // Helper: Format date
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            const options = { month: 'short', day: 'numeric', year: 'numeric' };
-            return date.toLocaleDateString('en-US', options);
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        } else {
+            document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
         }
 
-        // Helper: Get excerpt from description
-        function getExcerpt(html, maxLength = 120) {
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            const text = div.textContent || div.innerText || '';
-            return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-        }
-
-        // Helper: Pick an icon based on title keywords
-        function pickIcon(title) {
-            const t = title.toLowerCase();
-            if (t.includes('budget') || t.includes('deficit') || t.includes('finance')) return '💰';
-            if (t.includes('school') || t.includes('superintendent')) return '🎓';
-            if (t.includes('select board')) return '🏛️';
-            if (t.includes('update')) return '📋';
-            if (t.includes('election') || t.includes('vote')) return '🗳️';
-            if (t.includes('storm') || t.includes('cost')) return '⚡';
-            return '📰';
-        }
-
-        // Fetch and render blog posts
-        async function loadBlogPosts() {
-            const container = document.getElementById('blog-grid');
-            try {
-                const response = await fetch(RSS2JSON_API + encodeURIComponent(BLOG_FEED));
-                const data = await response.json();
-                
-                if (data.status !== 'ok') throw new Error('Feed error');
-                
-                const posts = data.items.slice(0, 3);
-                container.innerHTML = posts.map(post => `
-                    <a href="${post.link}" class="blog-card fade-in visible" target="_blank" rel="noopener">
-                        <div class="blog-card-image">${pickIcon(post.title)}</div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-card-category">Blog</span>
-                                <span class="blog-card-date">${formatDate(post.pubDate)}</span>
-                            </div>
-                            <h3>${post.title}</h3>
-                            <p>${getExcerpt(post.description)}</p>
-                        </div>
-                    </a>
-                `).join('');
-            } catch (error) {
-                console.error('Blog feed error:', error);
-                container.innerHTML = `
-                    <a href="https://evansexplains.substack.com" class="blog-card fade-in visible">
-                        <div class="blog-card-image">📋</div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="blog-card-category">Blog</span>
-                            </div>
-                            <h3>Visit Evans Explains</h3>
-                            <p>Read the latest updates and analysis on Substack</p>
-                        </div>
-                    </a>
-                `;
-            }
-        }
-
-        // Fetch and render news (all South Shore)
-        async function loadNews() {
-            const container = document.getElementById('news-list');
-            try {
-                const response = await fetch(RSS2JSON_API + encodeURIComponent(NEWS_FEED));
-                const data = await response.json();
-                
-                if (data.status !== 'ok') throw new Error('Feed error');
-                
-                const posts = data.items.slice(0, 5);
-                
-                container.innerHTML = posts.map(post => `
-                    <a href="${post.link}" class="news-item fade-in visible" target="_blank" rel="noopener">
-                        <span class="news-date">${formatDate(post.pubDate)}</span>
-                        <div class="news-content">
-                            <h4>${post.title}</h4>
-                            <p>${getExcerpt(post.description, 80)}</p>
-                        </div>
-                        <span class="news-source">South Shore News</span>
-                    </a>
-                `).join('');
-            } catch (error) {
-                console.error('News feed error:', error);
-                container.innerHTML = `
-                    <a href="https://www.southshore.news" class="news-item fade-in visible">
-                        <span class="news-date">—</span>
-                        <div class="news-content">
-                            <h4>Visit South Shore News</h4>
-                            <p>Read the latest South Shore coverage</p>
-                        </div>
-                        <span class="news-source">South Shore News</span>
-                    </a>
-                `;
-            }
-        }
-
-        // Load feeds on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadBlogPosts();
-            loadNews();
-        });
+        const links = document.querySelector('.nav-links');
+        document.querySelector('.mobile-menu').addEventListener('click', () => links.classList.toggle('open'));
+        links.addEventListener('click', e => { if (e.target.tagName === 'A') links.classList.remove('open'); });
     </script>
 </body>
 </html>
