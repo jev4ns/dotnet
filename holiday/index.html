@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Shore Holiday Events 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm community almanac, festive but quiet; a neighbor's handbill, not an ad.
+   IDEA: a town-green holiday program board, lit at dusk.
+   PICTURE: a South Shore harbor village at night: lighthouse, steeple, lit tree, string of lights, light snow.
+   COLOUR and TYPE: evergreen night band, white paper, cranberry accent, candle gold for light; Fraunces titles, Figtree text.
+   LAYOUT: illustrated masthead, then the working list: view switch, town picker, filters, grouped event cards. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0c1813);--ink:light-dark(#13261e,#eef3ef);--soft:light-dark(#5a6b63,#a9b8b0);
+--card:light-dark(#ffffff,#13231c);--line:light-dark(#e3e8e4,#24382e);--tint:light-dark(#f3f6f3,#102019);
+--pine:#0f3a2d;--pine2:#0a2a20;--berry:light-dark(#a3203a,#ff7d93);--berrybg:light-dark(#fbebee,#3a1620);
+--gold:#e9b949;--free:light-dark(#1f6b45,#7fd6a4);--freebg:light-dark(#e6f3ea,#163a28)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:650;line-height:1.08;text-wrap:balance;margin:0}
+.mast{background:var(--pine);color:#fff;position:relative;overflow:hidden}
+.mast-in{max-width:1240px;margin:0 auto;padding:clamp(24px,4vw,48px) max(5vw,16px) 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:end}
+.kick{font-size:14px;color:#cfe3d8;margin:0 0 10px}
+.mast h1{font-size:clamp(32px,4.6vw,52px);color:#fff}
+.lede{color:#dcebe3;max-width:46ch;margin:14px 0 22px}
+.stats{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:28px;font-size:14px;color:#cfe3d8}
+.stats b{display:block;font:650 26px/1 Fraunces,serif;color:var(--gold)}
+.scene{width:100%;height:auto;display:block;align-self:end}
+.lights{position:absolute;inset:0 0 auto 0;height:40px;pointer-events:none}
+.snow{position:absolute;inset:0;pointer-events:none}
+.snow i{position:absolute;top:-10px;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.7;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(420px)}}
+@media (prefers-reduced-motion:reduce){.snow{display:none}}
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1240px;margin:0 auto;padding:12px max(5vw,16px);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--tint)}
+.seg button{border:0;background:none;color:var(--ink);font:600 15px Figtree,sans-serif;padding:0 16px;min-height:38px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--pine);color:#fff}
+select,input,textarea{font:16px Figtree,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:44px;padding:8px 12px}
+select:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.grow{flex:1 1 180px}
+.chk{display:inline-flex;align-items:center;gap:8px;font-size:15px;min-height:44px;cursor:pointer}
+.chk input{width:20px;height:20px;min-height:0;accent-color:var(--pine)}
+.btn{font:600 15px Figtree,sans-serif;border:0;border-radius:999px;min-height:44px;padding:0 18px;cursor:pointer;background:var(--berry);color:#fff}
+:root[data-theme=dark] .btn{color:#2a0910}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .btn{color:#2a0910}}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.jump{max-width:1240px;margin:0 auto;padding:10px max(5vw,16px) 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.jump a{flex:none;font-size:14px;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.jump a:hover{border-color:var(--berry)}
+main{max-width:1240px;margin:0 auto;padding:8px max(5vw,16px) 64px}
+.group{padding-top:30px;scroll-margin-top:80px}
+.group>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+.group h2{font-size:clamp(24px,3vw,32px)}
+.group .sub{color:var(--soft);font-size:15px}
+.day{font:600 14px Figtree,sans-serif;color:var(--berry);margin:18px 0 8px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:12px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px 14px 14px;display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px}
+.ev.past{opacity:.55}
+.dt{text-align:center;border-radius:10px;background:var(--tint);padding:6px 0 7px;align-self:start}
+.dt small{display:block;font-size:13px;color:var(--soft);line-height:1.2}
+.dt b{display:block;font:650 26px/1.05 Fraunces,serif}
+.dt em{display:block;font-style:normal;font-size:13px;color:var(--berry);font-weight:600}
+.ev h3{font-size:18px;line-height:1.25;margin-bottom:4px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.pill{font-size:13px;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--tint);color:var(--soft);white-space:nowrap}
+.pill.free{background:var(--freebg);color:var(--free)}
+.pill.paid{background:var(--berrybg);color:var(--berry)}
+.pill.town{background:none;border:1px solid var(--line);color:var(--ink)}
+.when{font-size:15px;margin:0}
+.where{font-size:15px;color:var(--soft);margin:0}
+.desc{font-size:15px;margin:6px 0 0}
+.tbc{font-size:13px;color:var(--soft);margin:6px 0 0}
+.tbc::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:6px;vertical-align:1px}
+.empty{padding:40px 0;color:var(--soft)}
+.note{font-size:14px;color:var(--soft);margin:22px 0 0}
+.cta{background:var(--tint);border-top:1px solid var(--line)}
+.cta-in{max-width:1240px;margin:0 auto;padding:clamp(28px,4vw,48px) max(5vw,16px);display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+.cta h2{font-size:clamp(24px,3vw,32px)}
+.cta p{margin:6px 0 0;color:var(--soft);max-width:60ch}
+footer{max-width:1240px;margin:0 auto;padding:20px max(5vw,16px) 40px;font-size:14px;color:var(--soft)}
+footer a{color:var(--ink)}
+dialog{border:0;border-radius:18px;padding:0;width:min(640px,94vw);background:var(--bg);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(6,20,14,.55)}
+.dlg{padding:22px clamp(16px,4vw,28px) 24px}
+.dlg h2{font-size:26px;margin-bottom:4px}
+.dlg p{margin:0 0 14px;color:var(--soft);font-size:15px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.form label{display:grid;gap:4px;font-size:14px;font-weight:600}
+.form .full{grid-column:1/-1}
+textarea{min-height:90px;resize:vertical}
+.acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:16px}
+.done{display:none}
+.done pre{white-space:pre-wrap;background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:12px;font:14px/1.5 ui-monospace,Menlo,monospace;max-height:240px;overflow:auto}
+@media(max-width:760px){.mast-in{grid-template-columns:1fr}.scene{max-width:560px;margin:0 auto}}
+@media(max-width:600px){.bar{position:static}.mast-in{padding-top:44px}.form{grid-template-columns:1fr}.ev{grid-template-columns:50px minmax(0,1fr)}.bar-in{gap:8px}.seg{width:100%}.seg button{flex:1}}
+</style>
+</head>
+<body>
+<section class="mast">
+  <svg class="lights" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" id="lights"></svg>
+  <div class="snow" id="snow" aria-hidden="true"></div>
+  <div class="mast-in">
+    <div>
+      <p class="kick">South Shore News · Holiday guide 2026</p>
+      <h1>Your free guide to festive cheer</h1>
+      <p class="lede">Tree lightings, strolls, Santa arrivals and concerts across the South Shore, from Thanksgiving weekend through New Year's Day. Browse by weekend or pick your town.</p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <svg class="scene" viewBox="0 0 620 300" role="img" aria-label="A harbor village at night with a lighthouse, church steeple and a lit holiday tree">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f3a2d"/><stop offset="1" stop-color="#16503e"/></linearGradient>
+        <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd97a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd97a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffe7a3" stop-opacity=".5"/><stop offset="1" stop-color="#ffe7a3" stop-opacity="0"/></linearGradient>
+        <g id="win"><rect width="9" height="11" rx="1.5" fill="#f2c75c"/></g>
+      </defs>
+            <circle cx="540" cy="52" r="20" fill="#f4efe0" opacity=".9"/><circle cx="548" cy="46" r="18" fill="#0f3a2d"/>
+      <polygon points="96,104 600,40 600,150" fill="url(#beam)"/>
+      <g><rect x="74" y="98" width="30" height="150" fill="#e9efe9"/><rect x="74" y="98" width="10" height="150" fill="#cdd8d0"/>
+        <rect x="70" y="90" width="38" height="10" fill="#0a2a20"/><rect x="79" y="70" width="20" height="20" fill="#ffe08a"/>
+        <polygon points="74,70 89,52 104,70" fill="#a3203a"/><circle cx="89" cy="80" r="26" fill="url(#glow)"/>
+        <rect x="80" y="130" width="8" height="12" fill="#0a2a20"/><rect x="80" y="182" width="8" height="12" fill="#0a2a20"/></g>
+      <g fill="#0b2c22">
+        <polygon points="150,250 150,190 185,160 220,190 220,250"/>
+        <polygon points="230,250 230,170 262,140 294,170 294,250"/><rect x="254" y="96" width="16" height="48"/><polygon points="254,96 262,62 270,96"/>
+        <polygon points="300,250 300,200 335,176 370,200 370,250"/>
+        <polygon points="470,250 470,196 500,172 530,196 530,250"/>
+        <polygon points="530,250 530,206 560,186 590,206 590,250"/>
+      </g>
+      <use href="#win" x="166" y="205"/><use href="#win" x="196" y="205"/><use href="#win" x="244" y="190"/><use href="#win" x="270" y="190"/>
+      <use href="#win" x="257" y="112"/><use href="#win" x="318" y="214"/><use href="#win" x="344" y="214"/><use href="#win" x="490" y="210"/>
+      <use href="#win" x="550" y="218"/><use href="#win" x="566" y="218"/>
+      <g id="tree">
+        <circle cx="420" cy="150" r="80" fill="url(#glow)"/>
+        <polygon points="420,78 372,160 468,160" fill="#1d6b4c"/><polygon points="420,110 356,206 484,206" fill="#185c41"/>
+        <polygon points="420,150 344,250 496,250" fill="#134f37"/><rect x="412" y="250" width="16" height="16" fill="#3a2a1d"/>
+        <polygon points="420,62 425,74 438,74 428,82 432,95 420,87 408,95 412,82 402,74 415,74" fill="#e9b949"/>
+      </g>
+      <g id="bulbs"></g>
+      <rect y="258" width="620" height="42" fill="#0a2a20"/>
+      <g stroke="#2a6b55" stroke-width="2" opacity=".7"><line x1="20" y1="272" x2="120" y2="272"/><line x1="200" y1="284" x2="330" y2="284"/><line x1="440" y1="276" x2="600" y2="276"/></g>
+      <path d="M0 258 Q155 248 310 258 T620 258 V264 H0Z" fill="#f4f7f4"/>
+    </svg>
+  </div>
+</section>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="seg" role="group" aria-label="Sort events">
+      <button id="vDate" aria-pressed="true">By weekend</button>
+      <button id="vTown" aria-pressed="false">By town</button>
+    </div>
+    <select id="town" aria-label="Town"></select>
+    <input id="q" class="grow" type="search" placeholder="Search Santa, lighting, concert…" aria-label="Search events">
+    <label class="chk"><input type="checkbox" id="free"> Free only</label>
+    <button class="btn" id="openSubmit">Submit an event</button>
+  </div>
+</div>
+<nav class="jump" id="jump" aria-label="Jump to section"></nav>
+<main id="out" aria-live="polite"></main>
+
+<section class="cta">
+  <div class="cta-in">
+    <div>
+      <h2>Is your town's lighting, stroll or fair missing?</h2>
+      <p>Send us the details and we'll add it to the guide, or email justin@southshore.news. Times and programs change, especially when the weather turns, so check with the organizer before you go.</p>
+    </div>
+    <button class="btn" id="openSubmit2">Submit an event</button>
+  </div>
+</section>
+<footer>Compiled by South Shore News from town, organizer and community calendars, updated Nov. 22, 2026. A gold dot marks details we're still confirming. <a href="https://www.southshore.news">southshore.news</a></footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <form id="form" class="ask">
+      <h2 id="dlgTitle">Submit a holiday event</h2>
+      <p>Tell us what's happening and we'll review it before adding it to the guide.</p>
+      <div class="form">
+        <label class="full">Event name<input name="name" required maxlength="140"></label>
+        <label>Town<input name="town" required list="townList" maxlength="60"></label>
+        <label>Date<input name="date" type="date" min="2026-11-22" max="2027-01-15" required></label>
+        <label>Time<input name="time" placeholder="3–6 p.m." maxlength="60"></label>
+        <label>Cost<select name="cost"><option>Free</option><option>Ticketed</option><option>Donation</option><option>Not sure</option></select></label>
+        <label class="full">Location<input name="where" placeholder="Venue and street address" maxlength="160"></label>
+        <label class="full">Description<textarea name="desc" maxlength="800" placeholder="What will be there? Santa, music, food trucks…"></textarea></label>
+        <label>Link (optional)<input name="link" type="url" placeholder="https://" maxlength="300"></label>
+        <label>Your email (optional)<input name="email" type="email" maxlength="120"></label>
+      </div>
+      <datalist id="townList"></datalist>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="acts"><button type="button" class="btn ghost" id="cancel">Cancel</button><button class="btn" type="submit">Send event</button></div>
+    </form>
+    <div class="done" id="done">
+      <h2 id="doneTitle">Thank you</h2>
+      <p id="doneMsg"></p>
+      <pre id="doneText"></pre>
+      <div class="acts"><button type="button" class="btn ghost" id="copy">Copy details</button><button type="button" class="btn" id="close">Done</button></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+{
+// For justinevans.net/holiday: paste a form endpoint (e.g. Formspree "https://formspree.io/f/xxxx") and a contact email.
+const FORM_ENDPOINT="https://formspree.io/f/mbgoznap";
+const SUBMIT_EMAIL="justin@southshore.news";
+const CORE=["Abington","Cohasset","Duxbury","East Bridgewater","Halifax","Hanover","Hanson","Hingham","Hull","Kingston","Marshfield","Norwell","Pembroke","Plymouth","Plympton","Rockland","Scituate","Weymouth","Whitman"];
+// [start, end, town, title, cost, when, where, description, needsConfirm, flag]  flag: n = nearby town, d = worth the drive
+const E=[
+["2026-11-27",,"Quincy","Hancock Adams Common Holiday Celebration & Tree Lighting","Free","Programming from 1 p.m.; live music at 5 p.m., then the lighting","Hancock Adams Common, Quincy Center","Holiday movies, costumed characters and fire performers before Mayor Thomas Koch lights the city tree. Santa arrives, and a menorah is on display.",0,"n"],
+["2026-11-27",,"Hanover","Starland Christmas Tree Lighting Spectacular","Ticketed (about $12)","4–7 p.m.; tree lighting at 4:30 p.m.","Starland Sportsplex & Fun Park, 637 Washington St.","Santa and Mrs. Claus, letters to Santa, gingerbread-cookie decorating and holiday crafts.",1],
+["2026-11-27",,"Hingham","Santa Stroll at Derby Street Shops","Free","11 a.m.–2 p.m.","Derby Street Shops","",1],
+["2026-11-28",,"Rockland","Rockland Holiday Stroll","Free","3–6 p.m.","Union Street, downtown Rockland","Rockland's downtown kickoff on the Saturday after Thanksgiving. Businesses and families fill the center of town and Santa makes an appearance. Food and the Three Sips Brewing beer garden cost extra.",0],
+["2026-11-28",,"Quincy","Santa Arrives by Helicopter","Free","Noon","Pageant Field, 1 Merrymount Parkway","Santa lands on Pageant Field and costumed characters greet families.",0,"n"],
+["2026-11-28",,"Cohasset","Santa Arrives by Lobster Boat","Free","10 a.m.–noon","Cohasset Harbor, near the Government Island dock","Santa and Mrs. Claus come in by boat, followed by treats and photos.",1],
+["2026-11-28",,"Hull","Hull Holiday Showcase","Free","11 a.m.–4 p.m.","Nantasket Beach Resort, 45 Hull Shore Drive","The Hull Nantasket Chamber's Small Business Saturday market of local gifts, coastal art, crafts and decorations.",0],
+["2026-11-28",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–1 p.m.","Downtown Hingham","Horse-drawn hayrides, part of the Hingham Downtown Association's month-long Hingham for the Holidays.",0],
+["2026-11-28",,"Brockton","40th Annual Holiday Parade & Festival of Lights","Free","Noon–6 p.m.; parade at 2 p.m.; City Hall lights at 5 p.m.","Parade steps off from 72 Belmont St.","Floats, food trucks, ice skating and photos with Santa downtown.",0,"n"],
+["2026-11-29",,"Duxbury","21st Annual Holly Days","Free","1–4 p.m.","Village centers across town; trolleys connect the stops","Shopping, performances, crafts and treats. The Art Complex Museum adds a student concert, printmaking, cocoa and an elf seek-and-find from 1 to 3 p.m. The Rotary Festival of Lights is on the Town Green the same day.",0],
+["2026-11-29",,"Quincy","73rd Annual Christmas Parade","Free","Noon to about 3:30 p.m.","Hancock St. and Walter J. Hannon Pkwy. to North Quincy High School","Theme: \"Stars and Stripes & Christmas Lights; Quincy Celebrates 250 Years.\"",0,"n"],
+["2026-11-29",,"Cohasset","South Shore Merry Market","Ticketed","10 a.m.–3 p.m.","Red Lion Inn Barn, 71 South Main St.","More than 50 local vendors, holiday music and Santa. Ticket proceeds benefit A Place to Rise.",1],
+["2026-12-03",,"Abington","Green Wave Junior Class Auction","","6–9 p.m.","Abington High School cafeteria, 201 Gliniewicz Way","The Class of 2028's fundraiser opens the Abington Celebrates Christmas Weekend.",0],
+["2026-12-03",,"Duxbury","Holiday Jazz with the Donna Byrne Quartet","Ticketed","7–8:30 p.m.","Raw Bar at Island Creek Oyster, 403 Washington St.","South Shore Conservatory's Duxbury Music Festival preview. 90 general-admission seats; food and drinks sold separately.",0],
+["2026-12-03","2026-12-06","Braintree","Festival of Trees","","Opens Thursday 5–8 p.m.; runs through Sunday","Braintree Town Hall, 1 JFK Memorial Drive","More than 50 decorated trees raffled off, with music and refreshments.",1,"n"],
+["2026-12-04",,"Weymouth","Southeastern Philharmonic Symphonic Christmas Concert","","7:30 p.m. (expected)","Sanctuary Hall, East Weymouth Congregational Church, 1320 Commercial St.","The community orchestra, playing on the South Shore since 1914, with carols, seasonal favorites and usually a visit from Santa.",1],
+["2026-12-04",,"Abington","Annual Ugly Sweater Party","Ticketed ($25)","7–11 p.m.","Abington American Legion, 1027 Washington St.","The Abington Lions host DJ music, dancing, games, prizes and a dessert table. Cash bar. Reserve at abingtonmalions@gmail.com.",0],
+["2026-12-04",,"Hingham","Christmas in the Square","Free","5–8 p.m.; Santa arrives by fire truck at 6:30 p.m.","Hingham Square","Candy canes, food trucks, a DJ, student performances and late shopping. Expect road closures downtown.",0],
+["2026-12-04",,"Plymouth","Holiday Stroll: Tree & Menorah Lighting","Free","Lighting at 5 p.m.; festivities from late afternoon","Town Hall and the downtown waterfront","Night one of the three-day stroll and the first night of Hanukkah, with harbor luminaria, carolers and late shopping.",1],
+["2026-12-04","2026-12-05","Scituate","Holidays in the Harbor","Free","Friday morning through 5 p.m. Saturday","Scituate Harbor and Front Street","Santa and Mrs. Claus, carriage rides, the lobster-trap tree, wreath and gingerbread displays, plus harbor shopping and dining.",1],
+["2026-12-04","2026-12-06","Whitman","7th Annual Decorate for Scholars Tree Lighting & Vendor Event","Free","Park: Fri 4:30–7:30, Sat 3–8, Sun 4:30–7:30. Vendors: Fri and Sat only","Whitman Town Park, 141 Whitman Ave., and Town Hall","Decorated trees in the park, 30+ vendors in Town Hall, live entertainment and food trucks. Santa and face painting Saturday only. Proceeds fund Class of 2027 scholarships.",0],
+["2026-12-05",,"East Bridgewater","Christmas Parade","Free","Steps off at 10 a.m., rain or shine","Spring Street","Theme: \"A Very Merry North Pole Christmas.\"",0],
+["2026-12-05",,"Bridgewater","Christmas Parade","Free","4:30 p.m.","Main Street","Hosted by Dynamic Aviation. Theme: \"Christmas on Main Street.\"",0,"n"],
+["2026-12-05",,"Hanson","Hanson Holiday Fest","Free","Late afternoon, with fireworks","Hanson Town Hall Green, 542 Liberty St. (traditional site)","The Hanson Holiday Committee's family festival. Donations go to the fireworks.",1],
+["2026-12-05",,"Abington","Christmas at Island Grove","Free","3–6 p.m.; Santa 3:15; bandstand lighting 5:30","Island Grove Park, 200 Park Ave.","Santa and Mrs. Claus in the Gingerbread Cabin, hayrides, a bandstand train display, carolers, cocoa, reindeer games and a 6-foot teddy bear raffle. This year's lighting honors Abington Veterans Services.",0],
+["2026-12-05",,"Abington","Breakfast with Santa","Ticketed ($5; under 5 free)","9 a.m.–noon","Abington Senior Center, 441 Summer St.","Hosted by the Friends of Abington Seniors.",0],
+["2026-12-05",,"Abington","Garden Club Annual Winter Fair","Free","10 a.m.–2 p.m.","United Church of Christ, 10 Bedford St.","Fresh greens baskets, vendors, a bake sale and raffles.",0],
+["2026-12-05",,"Abington","Dyer Memorial Library Open House","Free","Noon–3 p.m.","28 Centre Ave.","",0],
+["2026-12-05",,"Abington","21st Annual Candle Lighting Service","Free","Open house 2–4 p.m.","Quealy & Son Funeral Home, 116 Adams St.","All are welcome to light a candle in memory of a loved one.",0],
+["2026-12-05",,"Norwell","Holiday Stroll & Town Common Tree Lighting","Free","1–4 p.m.; lighting at dusk","Norwell Center and Town Common","The Norwell Women's Club's stroll: music, treats, crafts, gingerbread activities and Santa.",0],
+["2026-12-05",,"Pembroke","Tree Lighting on the Green","Free (gingerbread kits $30)","2–5 p.m.","Pembroke Town Green and Community Center","Cocoa, marshmallow roasting, cookie decorating, ornament making and letters to Santa. A Golden Ticket child rides with Santa on the fire truck.",0],
+["2026-12-05",,"Weymouth","Christmas Tree Lighting & Holiday Festival","Free","4–6:30 p.m.","Weymouth Town Hall, 75 Middle St.","",0],
+["2026-12-05",,"Hull","Lobster Trap Tree Lighting","Free","Photos 3:30; ceremony 4; Santa by fire truck 4:15; lighting at dusk","Mariner's Park","Hull's coastal tree lighting, with singing, cookies and cocoa.",0],
+["2026-12-05",,"Marshfield","Molly Fund Tree Lighting","Free","From 4 p.m.; lighting at dusk","Dandelion Park, 1896 Ocean St.","Santa, carols, cocoa and cookies.",1],
+["2026-12-05",,"Hingham","Community Chanukah Menorah Lighting","Free","5–7 p.m.","Hingham Community Center, 70 South St.","Cocoa, doughnuts, dreidels and gelt on the second night of Hanukkah, with activities inside afterward.",0],
+["2026-12-05",,"Plymouth","Santa on Main Street & Light the Night","Free","Santa photos 1–4 p.m.; lighting at 5 p.m.","Main Street and Brewster Gardens","Day two of the Holiday Stroll. The Brewster Gardens light trail then glows nightly through Dec. 31.",0],
+["2026-12-05",,"Braintree","Santa, Holiday Stroll & Tree Lighting","","3–7 p.m.; tree lighting at 5 p.m.","Braintree Firehouse to Town Hall","Santa at the firehouse, a stroll to Town Hall, the tree lighting and Touch-a-Truck.",1,"n"],
+["2026-12-05","2026-12-06","Abington","Olde Town Christmas House Tour","Ticketed ($40–$45)","Sat 5–8:30 p.m.; Sun noon–4 p.m.","Four decorated homes; addresses come with tickets","Ages 12 and up. Tickets at abingtonma.myrec.com. Benefits the Arnold Park Revitalization Project.",0],
+["2026-12-05","2026-12-06","Duxbury","The Nutcracker","Ticketed","1 p.m. both days","Duxbury Performing Arts Center, 73 Alden St.","South Shore Conservatory's School of Dance stages the full ballet.",0],
+["2026-12-05",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
+["2026-12-06",,"Whitman","Southeastern Philharmonic Holiday Concert","Free","2:30 p.m.","Whitman Town Hall, 54 South Ave.","Carols and seasonal favorites. Donations for the Whitman Food Pantry welcome.",1],
+["2026-12-06",,"Whitman","11th Annual Stuff a Cruiser & Ambulance Toy Drive","Bring a toy","9 a.m.–1 p.m.","Whitman Police lot, 20 Essex St.","Police and Fire collect gifts and gift cards for the Whitman Area Toy Drive.",0],
+["2026-12-06",,"Scituate","Snowflake Fair","Free","9 a.m.–2 p.m.","","",1],
+["2026-12-06",,"Abington","Pup Pics with Santa","Ticketed ($20)","10 a.m.–1 p.m.","Gingerbread Cabin, Island Grove, 200 Park Ave.","A Friends of Abington Dog Park fundraiser. Dogs must be leashed.",0],
+["2026-12-06",,"Abington","Winter Wonderland Craft Fair","Free","11 a.m.–3 p.m.","Knights of Columbus, 254 Hancock St.","Hosted by the Abington Vendor Group.",0],
+["2026-12-06",,"Abington","A Christmas Concert","Free","3 p.m.","United Church of Christ, 10 Bedford St.","The Abington Town Christmas Choir under Doug Ulwick, with solos and a carol sing-along. Good-will offering accepted.",0],
+["2026-12-06",,"Hull","Flying Santa","Free","10:45 a.m., weather permitting","Hull Lifesaving Museum, 1117 Nantasket Ave.","Santa lands by helicopter. The museum's Christmas Sales Day is the same day.",0],
+["2026-12-06",,"Plymouth","Holiday Stroll Day Three & Cookie Trail","Free (Cookie Trail ticketed)","Cookie Trail 11 a.m.–4 p.m.","Downtown Plymouth businesses","Last year's first Cookie Trail sold out quickly.",1],
+["2026-12-06",,"Quincy","General's Bridge and Park Tree Lighting","Free","5 p.m.","General's Bridge and Park","A lighting that honors active-duty military members.",0,"n"],
+["2026-12-11",,"Scituate","Holidays in the Village","Free","4–7 p.m.","North Scituate Village","An elf scavenger hunt, photos with Santa, kids' crafts and carriage rides.",0],
+["2026-12-11",,"Cohasset","Cohasset Christmas Stroll","Free","3–8 p.m. (permit window)","Cohasset Village","Caroling, live music and Santa through the village.",1],
+["2026-12-12",,"Weymouth","Christmas in Columbian Square","Free","4–6:30 p.m.","Columbian Square, South Weymouth","",0],
+["2026-12-12",,"Halifax","Holidays in Halifax Tree Lighting","Free","5–8 p.m. (rain date Dec. 13)","Halifax town center","The 29th annual town celebration and tree lighting.",0],
+["2026-12-12",,"Hingham","Miracle on Main Street Live Nativity","Free (bring a food item)","3–7 p.m., rain or shine","South Shore Baptist Church, 578 Main St.","An interactive Bethlehem marketplace with a petting zoo, crafts, food trucks and a photo booth. Food donations go to the Hingham Food Pantry.",0],
+["2026-12-12",,"Hingham","Old Ship Merrie Market","Free","9 a.m.–2 p.m.","Hingham Community Center","Bazaar, silent auction, handmade wreaths, baked goods and a children's shop.",0],
+["2026-12-12","2026-12-19","Hull","Winter Wonderland Festival of Trees","Ticketed ($10–$20)","10 a.m.–4 p.m. daily","Windmill Point Boathouse, 185 Main St.","30+ decorated trees, later donated to veterans and their families.",0],
+["2026-12-12","2026-12-13","Weymouth","The Nutcracker","Ticketed","Sat 1 & 5 p.m.; Sun 1 p.m.","Chapman Theater","South Shore Ballet Theatre & Wellness, with 63 local dancers.",0],
+["2026-12-12","2026-12-13","Plymouth","Plymouth Philharmonic: Hometown Holiday","Ticketed ($40–$150)","Sat 3 & 7:30 p.m.; Sun 1 & 5 p.m.","Plymouth Memorial Hall, 83 Court St.","Orchestra, chorus, tenor Matthew Anderson, Messiah selections and an \"Auld Lang Syne\" sing-along.",0],
+["2026-12-12","2026-12-13","Duxbury","Snug Harbor Community Chorus","Ticketed","Sat 7:30 p.m. at Duxbury PAC; Sun 2 p.m. at South Shore Conservatory","Duxbury","The chorus's annual pair of holiday concerts.",1],
+["2026-12-12",,"Abington","Fill-a-Cruiser Toy Drive","Bring a toy","10 a.m.–3 p.m.","Walmart","Abington Police collect new, unwrapped toys.",1],
+["2026-12-12",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
+["2026-12-12","2026-12-20","Middleborough","Christmas at the Oliver Estate","","Dec. 12, 13, 19 & 20, 4:30–7:30 p.m.","445 Plymouth St.","",1,"n"],
+["2026-12-13",,"East Bridgewater","Celebrate the Season with Black Santa","","10 a.m.–3 p.m.","East Bridgewater Council on Aging","",1],
+["2026-12-13",,"Scituate","South Shore Holiday Pops","Ticketed (from $33)","3–5 p.m.","Scituate Performing Arts Center, 606 Chief Justice Cushing Hwy.","The Atlantic Symphony Orchestra plays Sleigh Ride and seasonal favorites, with a family sing-along and a North Pole guest.",0],
+["2026-12-13",,"Hingham","Holiday Guitar Concert with John Muratore","Free","3–4 p.m.","Hingham Public Library, Whiton Room","",0],
+["2026-12-15","2026-12-16","Norwell","Holidays with the Divas","Ticketed ($32–$34)","7:30 p.m. both nights","The Company Theatre, 30 Accord Park Drive","Holiday standards, cabaret style.",0],
+["2026-12-19",,"Marshfield","Winter Farmers' Market","Free","10 a.m.–1 p.m.","Marshfield Fairgrounds grandstand, Gate A, 140 Main St.","About 20 farms, chefs and artisans indoors, with live music and kids' activities.",0],
+["2026-12-19",,"Kingston","Kingston Luminaries","Free","5–8:30 p.m.","Townwide; tree lighting on the Town Green","Streets lined with luminaria, caroling, and open houses at the Surprize Hose House, Reed Center and library.",0],
+["2026-12-19",,"Hingham","Last Clydesdale Hayrides of the Season","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
+["2026-12-20",,"Hingham","Candlelight Christmas Concert","","4 p.m.","New North Church","South Shore Conservatory faculty and students.",1],
+["2026-12-20",,"Scituate","Lawson Tower Christmas Bell Concert","Free","6 p.m.","Lawson Tower","Carols rung on the historic tower's bells.",0],
+["2026-12-26",,"Plymouth","Dueling Pianos, Holiday Edition","Ticketed","Evening","Uva Wine Bar","",1],
+["2026-12-31",,"Plymouth","Christine Hurley & Friends: A NYE Celebration","Ticketed","New Year's Eve","The Spire Center for Performing Arts","",1],
+["2027-01-01",,"Duxbury","New Year's Day Polar Plunge","Registration fee","New Year's Day","Duxbury Beach","The Duxbury Education Foundation's fundraising plunge.",1],
+["2026-11-27","2026-12-30","Marshfield","South Shore Celebration of Lights","Ticketed ($22.99–$35 per car)","Selected nights, 5–9 p.m.","Marshfield Fairgrounds, Gate E, 62 South River St.","A mile-plus drive-through with over a million LEDs and a 300-foot light tunnel. Buy online; sold-out sessions have no gate sales.",0],
+["2026-11-27","2026-12-27","Carver","Edaville's Winter Wonderland","Ticketed ($38)","Fri 4–9, Sat 2–9, Sun 3–7:30; closed Dec. 25","5 Pine St., Carver","Train through the lights, skating, carriage and pony rides, a petting zoo and Santa.",0,"n"],
+["2026-11-27","2026-12-20","Norwell","Disney's Frozen","Ticketed ($62–$69)","Fri 7:30 p.m.; Sat & Sun 3 p.m.","The Company Theatre, 30 Accord Park Drive","The Broadway musical with an adult cast.",0],
+["2026-12-05","2026-12-31","Plymouth","Light the Night","Free","Nightly, sunset to sunrise","Brewster Gardens and downtown","A month-long light trail through downtown and the waterfront.",0],
+["2026-11-13","2027-01-01","Avon","Enchanted Village at Jordan's Furniture","Free (add-ons $2–$11)","Daily; hours vary","Jordan's Furniture, Avon","Indoor holiday village with Santa photos through Christmas Eve.",0,"d"],
+["2026-11-21","2027-01-03","Attleboro","Festival of Lights at La Salette Shrine","Free","Nightly 5–9 p.m.","La Salette Shrine","Walk-through lights with a religious theme. Weekends are crowded.",0,"d"],
+["2026-11-27","2027-01-02","Canton","Winterlights","Ticketed ($20–$32)","Wed–Sun 4:30–9 p.m.","Eleanor Bradley Cabot Estate","Thousands of artful lights; buy tickets ahead.",0,"d"],
+["2026-11-28","2026-12-13","Easton","Festival of Trees","Ticketed ($17)","Thursdays–Sundays","Easton Country Club","70+ themed trees, with a chance to win one.",0,"d"],
+["2026-11-08","2026-12-24","Foxborough","Santa's Wonderland at Bass Pro Shops","Free photo","Reservations required","Patriot Place","Free Santa photo, a letter to Santa and a craft kit.",0,"d"]
+].map((r,i)=>({id:i,s:r[0],e:r[1]||r[0],town:r[2],title:r[3],cost:r[4],when:r[5],where:r[6],desc:r[7],tbc:!!r[8],flag:r[9]||""}));
+
+const GROUPS=[
+ {k:"tg",name:"Thanksgiving weekend",sub:"Nov. 27–29",from:"2026-11-22",to:"2026-11-30"},
+ {k:"peak",name:"Peak weekend",sub:"Dec. 3–6 · Hanukkah begins Friday at sundown",from:"2026-12-01",to:"2026-12-07"},
+ {k:"w11",name:"Second weekend of December",sub:"Dec. 11–13",from:"2026-12-08",to:"2026-12-14"},
+ {k:"w18",name:"Week before Christmas",sub:"Dec. 15–20",from:"2026-12-15",to:"2026-12-21"},
+ {k:"ny",name:"Christmas week to New Year's",sub:"Dec. 26–Jan. 1",from:"2026-12-22",to:"2027-01-10"},
+ {k:"season",name:"All season long",sub:"Light shows and long runs",from:"",to:""},
+ {k:"drive",name:"Worth the drive",sub:"Beyond the South Shore",from:"",to:""}];
+const span=e=>(new Date(e.e)-new Date(e.s))/864e5;
+const groupOf=e=>e.flag==="d"?"drive":span(e)>10?"season":(GROUPS.find(g=>g.from&&e.s>=g.from&&e.s<=g.to)||GROUPS[4]).k;
+const MON=["Jan.","Feb.","March","April","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."];
+const DOW=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const D=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const short=s=>{const d=D(s);return MON[d.getMonth()]+" "+d.getDate()};
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const today=new Date();today.setHours(0,0,0,0);
+const towns=[...new Set(E.map(e=>e.town))];
+const nearby=towns.filter(t=>!CORE.includes(t)).sort();
+
+const $=id=>document.getElementById(id);
+const sel=$("town");
+sel.innerHTML='<option value="">All towns</option><optgroup label="South Shore">'+CORE.map(t=>`<option>${t}</option>`).join("")+'</optgroup><optgroup label="Nearby">'+nearby.map(t=>`<option>${t}</option>`).join("")+"</optgroup>";
+$("townList").innerHTML=CORE.concat(nearby).map(t=>`<option value="${t}">`).join("");
+const coreCount=E.filter(e=>CORE.includes(e.town)).length;
+$("stats").innerHTML=`<span><b>${E.length}</b>events</span><span><b>${new Set(E.filter(e=>CORE.includes(e.town)).map(e=>e.town)).size}</b>South Shore towns</span><span><b>${E.filter(e=>/^Free/.test(e.cost)).length}</b>free to attend</span>`;
+
+let view="date";
+try{const v=localStorage.getItem("ssn-view");if(v)view=v;const t=localStorage.getItem("ssn-town");if(t&&[...sel.options].some(o=>o.value===t))sel.value=t}catch(_){}
+if(location.hash==="#by-town")view="town";else if(location.hash==="#by-weekend")view="date";
+
+function dateBox(e){const d=D(e.s);const multi=e.e!==e.s;
+ return `<div class="dt"><small>${DOW[d.getDay()].slice(0,3)}</small><b>${d.getDate()}</b><small>${MON[d.getMonth()].replace(".","")}</small>${multi?`<em>to ${short(e.e).replace(MON[d.getMonth()]+" ","")}</em>`:""}</div>`}
+function costPill(c){if(!c)return"";const k=/^Free/.test(c)?"free":/^Ticketed|Registration/.test(c)?"paid":"";return `<span class="pill ${k}">${esc(c)}</span>`}
+function card(e,showTown){
+ const past=new Date(D(e.e))<today;
+ return `<article class="ev${past?" past":""}">${dateBox(e)}<div><h3>${esc(e.title)}</h3><div class="meta">${showTown?`<span class="pill town">${esc(e.town)}${e.flag==="n"?" · nearby":""}</span>`:""}${costPill(e.cost)}</div>
+ <p class="when">${esc(e.when)}${e.e!==e.s?` · ${short(e.s)}–${short(e.e)}`:""}</p>${e.where?`<p class="where">${esc(e.where)}</p>`:""}${e.desc?`<p class="desc">${esc(e.desc)}</p>`:""}${e.tbc?'<p class="tbc">Some details still being confirmed</p>':""}</div></article>`}
+function filtered(){
+ const q=$("q").value.trim().toLowerCase(),t=sel.value,f=$("free").checked;
+ return E.filter(e=>(!t||e.town===t)&&(!f||/^Free/.test(e.cost))&&(!q||(e.title+" "+e.town+" "+e.desc+" "+e.where).toLowerCase().includes(q)))
+  .sort((a,b)=>a.s.localeCompare(b.s)||a.town.localeCompare(b.town))}
+function render(){
+ $("vDate").setAttribute("aria-pressed",view==="date");$("vTown").setAttribute("aria-pressed",view==="town");
+ const list=filtered();let html="",jump="";
+ if(!list.length){$("out").innerHTML='<p class="empty">No events match. Try another town or clear the search, or submit one we missed.</p>';$("jump").innerHTML="";return}
+ if(view==="date"){
+  for(const g of GROUPS){const items=list.filter(e=>groupOf(e)===g.k);if(!items.length)continue;
+   jump+=`<a href="#g-${g.k}">${g.name}</a>`;
+   let body="";
+   if(g.k==="season"||g.k==="drive")body=`<div class="list">${items.map(e=>card(e,true)).join("")}</div>`;
+   else{const days=[...new Set(items.map(e=>e.s))];
+    body=days.map(d=>{const x=D(d);return `<p class="day">${DOW[x.getDay()]}, ${MON[x.getMonth()]} ${x.getDate()}</p><div class="list">${items.filter(e=>e.s===d).map(e=>card(e,true)).join("")}</div>`}).join("")}
+   html+=`<section class="group" id="g-${g.k}"><header><h2>${g.name}</h2><span class="sub">${g.sub} · ${items.length} event${items.length>1?"s":""}</span></header>${body}</section>`}
+ }else{
+  const ts=[...new Set(list.map(e=>e.town))].sort((a,b)=>(CORE.includes(b)-CORE.includes(a))||a.localeCompare(b));
+  for(const t of ts){const items=list.filter(e=>e.town===t);const slug=t.toLowerCase().replace(/\W+/g,"-");
+   jump+=`<a href="#t-${slug}">${t}</a>`;
+   html+=`<section class="group" id="t-${slug}"><header><h2>${esc(t)}</h2><span class="sub">${CORE.includes(t)?"":"Nearby · "}${items.length} event${items.length>1?"s":""}</span></header><div class="list">${items.map(e=>card(e,false)).join("")}</div></section>`}
+  const missing=sel.value?[]:CORE.filter(t=>!ts.includes(t));
+  if(missing.length&&!$("q").value&&!$("free").checked)html+=`<p class="note">Still waiting on 2026 dates from: ${missing.join(", ")}. Know something? Submit it below.</p>`}
+ $("out").innerHTML=html;$("jump").innerHTML=jump}
+function setView(v){view=v;try{localStorage.setItem("ssn-view",v)}catch(_){}history.replaceState(null,"",v==="town"?"#by-town":"#by-weekend");render()}
+$("vDate").onclick=()=>setView("date");$("vTown").onclick=()=>setView("town");
+sel.onchange=()=>{try{localStorage.setItem("ssn-town",sel.value)}catch(_){}render()};
+$("q").oninput=render;$("free").onchange=render;
+addEventListener("hashchange",()=>{if(location.hash==="#by-town"&&view!=="town"){view="town";render()}else if(location.hash==="#by-weekend"&&view!=="date"){view="date";render()}});
+render();
+
+// lights + snow
+const L=$("lights");let lp='<path d="M0 6 Q75 30 150 6 T300 6 T450 6 T600 6 T750 6 T900 6 T1050 6 T1200 6" fill="none" stroke="#062019" stroke-width="2"/>';
+const cols=["#e9b949","#ff7d93","#f4f7f4"];for(let i=0;i<32;i++){const x=i*37.5+18,y=6+18*Math.sin(Math.PI*((x%150)/150));lp+=`<ellipse cx="${x}" cy="${y+6}" rx="4" ry="6" fill="${cols[i%3]}"/>`}L.innerHTML=lp;
+const B=$("bulbs");let bp="";[[420,96],[404,124],[436,130],[392,170],[448,176],[420,190],[380,222],[460,228],[404,238],[436,236],[420,214]].forEach(([x,y],i)=>bp+=`<circle cx="${x}" cy="${y}" r="3.4" fill="${cols[i%3]}"/>`);B.innerHTML=bp;
+const S=$("snow");let sp="";for(let i=0;i<40;i++)sp+=`<i style="left:${(i*37)%100}%;animation-duration:${8+(i*7)%9}s;animation-delay:-${(i*13)%17}s;transform:scale(${.5+(i%4)*.25})"></i>`;S.innerHTML=sp;
+
+// submission
+const dlg=$("dlg"),form=$("form"),done=$("done");
+function open(){form.reset();form.style.display="";done.style.display="none";if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","")}
+$("openSubmit").onclick=open;$("openSubmit2").onclick=open;$("cancel").onclick=()=>dlg.close();$("close").onclick=()=>dlg.close();
+let dbP=null;
+function getDb(){if(!dbP)dbP=(async()=>{try{if(!window.claude||!claude.use)return null;const db=await claude.use("db"),user=await claude.use("user");if(!db||!user)return null;return{db,id:await user.id()}}catch(_){return null}})();return dbP}
+form.onsubmit=async ev=>{ev.preventDefault();
+ const f=Object.fromEntries(new FormData(form).entries());
+ const text=`${f.name}\nTown: ${f.town}\nDate: ${f.date}${f.time?"\nTime: "+f.time:""}\nCost: ${f.cost}${f.where?"\nLocation: "+f.where:""}${f.desc?"\n\n"+f.desc:""}${f.link?"\n\nLink: "+f.link:""}${f.email?"\nSubmitted by: "+f.email:""}`;
+ const btn=form.querySelector("[type=submit]");btn.disabled=true;btn.textContent="Sending…";
+ let saved=false;
+ if(f._gotcha){saved=true}else if(FORM_ENDPOINT){try{const r=await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({...f,_subject:"Holiday event: "+f.name,...(f.email?{_replyto:f.email}:{})})});saved=r.ok}catch(_){}}
+ if(!saved)try{const c=await Promise.race([getDb(),new Promise(r=>setTimeout(()=>r(null),10000))]);
+  if(c){const ref=c.db.doc("submissions/"+c.id);let cur={};try{const s=await ref.get();cur=(s&&typeof s.data==="function"?s.data():s)||{}}catch(_){}
+   const items=Array.isArray(cur.items)?cur.items:[];items.push({...f,at:new Date().toISOString()});await ref.set({items,updated:new Date().toISOString()});saved=true}}catch(_){saved=false}
+ btn.disabled=false;btn.textContent="Send event";
+ form.style.display="none";done.style.display="block";$("doneText").textContent=text;
+ $("doneTitle").textContent=saved?"Thank you. It's in our queue":"Almost there";
+ $("doneMsg").textContent=saved?"We'll review it and add it to the guide. Here's a copy of what you sent.":SUBMIT_EMAIL?`We couldn't send this from here. Copy the details below and email them to ${SUBMIT_EMAIL}.`:"We couldn't send this from here. Copy the details below and reply to any South Shore News email, or send them to us through southshore.news.";
+ $("copy").style.display="";};
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("doneText").textContent);$("copy").textContent="Copied"}catch(_){$("copy").textContent="Select and copy the text above"}setTimeout(()=>$("copy").textContent="Copy details",2500)};
+}
+</script>
+</body>
+</html>
