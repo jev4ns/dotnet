@@ -60,7 +60,9 @@ main{max-width:1240px;margin:0 auto;padding:8px max(5vw,16px) 64px}
 .day{font:600 14px Figtree,sans-serif;color:var(--berry);margin:18px 0 8px}
 .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:12px}
 .ev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px 14px 14px;display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px}
-.ev.past{opacity:.55}
+.ev.past{opacity:.5;filter:grayscale(1)}
+.pill.now{background:var(--gold);color:#2a1d00}
+.pill.over{background:var(--tint);color:var(--soft)}
 .dt{text-align:center;border-radius:10px;background:var(--tint);padding:6px 0 7px;align-self:start}
 .dt small{display:block;font-size:13px;color:var(--soft);line-height:1.2}
 .dt b{display:block;font:650 26px/1.05 Fraunces,serif}
@@ -157,6 +159,7 @@ textarea{min-height:90px;resize:vertical}
     <select id="town" aria-label="Town"></select>
     <input id="q" class="grow" type="search" placeholder="Search Santa, lighting, concert…" aria-label="Search events">
     <label class="chk"><input type="checkbox" id="free"> Free only</label>
+    <label class="chk"><input type="checkbox" id="past"> Show past events</label>
     <button class="btn" id="openSubmit">Submit an event</button>
   </div>
 </div>
@@ -212,29 +215,40 @@ const CORE=["Abington","Cohasset","Duxbury","East Bridgewater","Halifax","Hanove
 // [start, end, town, title, cost, when, where, description, needsConfirm, flag]  flag: n = nearby town, d = worth the drive
 const E=[
 ["2026-11-27",,"Quincy","Hancock Adams Common Holiday Celebration & Tree Lighting","Free","Programming from 1 p.m.; live music at 5 p.m., then the lighting","Hancock Adams Common, Quincy Center","Holiday movies, costumed characters and fire performers before Mayor Thomas Koch lights the city tree. Santa arrives, and a menorah is on display.",0,"n"],
-["2026-11-27",,"Hanover","Starland Christmas Tree Lighting Spectacular","Ticketed (about $12)","4–7 p.m.; tree lighting at 4:30 p.m.","Starland Sportsplex & Fun Park, 637 Washington St.","Santa and Mrs. Claus, letters to Santa, gingerbread-cookie decorating and holiday crafts.",1],
-["2026-11-27",,"Hingham","Santa Stroll at Derby Street Shops","Free","11 a.m.–2 p.m.","Derby Street Shops","",1],
-["2026-11-28",,"Rockland","Rockland Holiday Stroll","Free","3–6 p.m.","Union Street, downtown Rockland","Rockland's downtown kickoff on the Saturday after Thanksgiving. Businesses and families fill the center of town and Santa makes an appearance. Food and the Three Sips Brewing beer garden cost extra.",0],
+["2026-11-27",,"Hanover","Starland Christmas Tree Lighting Spectacular","Ticketed ($12 advance, $18 door)","4–7 p.m.; tree lighting at 4:30 p.m.","Starland Sportsplex & Fun Park, 637 Washington St.","Santa and Mrs. Claus, letters to Santa, gingerbread-cookie decorating and holiday crafts. Admission required for adults and children.",0],
+["2026-11-27",,"Hingham","Santa Stroll at Derby Street Shops","Free","11 a.m.–2 p.m.","Derby Street Shops","Santa and Mrs. Claus stroll the property.",0],
+["2026-11-28",,"Rockland","Rockland Holiday Stroll","Free","3–6 p.m.; parade 3 p.m.; tree lighting 5:30 p.m.","Union Street, downtown Rockland","A parade escorts Santa and Mrs. Claus from the fire station to the North Pole at Magoun-Biggins Funeral Home. At Town Hall: M.A.D. Dancers, the Union Ringers Bell Choir, the Rockland High School Choir and the 5:30 tree lighting. Around town: s'mores at Mullen Park, Aerialicious stilt walkers, face painting, HKS Clydesdales horse rides (4–6 p.m.), Joe's Crazzy Critters, Victorian carolers at the library, side-street open houses, a beer garden and a window-decorating contest. Schedule subject to change.",0],
+["2026-11-28",,"Norwell","Gingerbread and Santa at Tinker's Son","Free photos; kits $25","Noon–2 p.m.","Tinker's Son, 707 Main St.","Free photos with Santa. Gingerbread kits need advance registration.",0],
+["2026-11-29",,"Abington","Seoane's Winterfest Market","Free","11 a.m.–3 p.m.","Seoane's, 551 Bedford St.","Free parking.",0],
+["2026-12-05",,"Plymouth","Plymouth Holiday Market","Ticketed ($6; under 12 free)","11 a.m.–5 p.m.","Plymouth Memorial Hall, 83 Court St.","",0],
+["2026-12-05",,"Scituate","The Polar Express Drive-In","Ticketed ($50 per car)","4:30 and 7 p.m.","Gates Middle School, 460 First Parish Road","",0],
+["2026-12-12","2026-12-19","Hanover","Holiday Who Character Brunch","Ticketed ($15–$25)","Saturdays Dec. 12 & 19, 10–11:30 a.m.","Rec Room at Starland, 637 Washington St.","$25 ages 1–16, $15 ages 17 and up, under 1 free.",0],
+["2026-11-27","2026-12-24","Hanover","South Shore Holiday Shoppes","Free","Opens Nov. 27, 11 a.m.–5 p.m.; then weekends 10 a.m.–4 p.m.","Hanover Crossing, 1775 Washington St.","A holiday market running weekends through Christmas. Free parking.",0],
+["2026-12-03",,"Plymouth","Vienna Boys' Choir: Christmas in Vienna","Ticketed","7:30 p.m.","Plymouth Memorial Hall, 83 Court St.","",0],
+["2026-12-05",,"Plymouth","Pilgrim Hall Museum Holiday House Tour","Ticketed ($50–$55)","10 a.m.–4 p.m.","Booklet pickup at Pilgrim Hall Museum, 75 Court St.","Reservations required; $55, members $50. Pick up your booklet (your ticket) Fri 3–5 p.m. or Sat 9 a.m.–noon. No tickets sold at the houses.",0],
+["2026-12-06",,"Plymouth","The Irish Tenors: A Family Christmas","Ticketed","3 p.m.","Plymouth Memorial Hall, 83 Court St.","",0],
+["2026-12-19","2026-12-20","Abington","Breakfast with Santa at Abington Ale House","Ticketed","8–11 a.m. both days","Abington Ale House, 1235 Bedford St.","Reservations recommended.",0],
 ["2026-11-28",,"Quincy","Santa Arrives by Helicopter","Free","Noon","Pageant Field, 1 Merrymount Parkway","Santa lands on Pageant Field and costumed characters greet families.",0,"n"],
-["2026-11-28",,"Cohasset","Santa Arrives by Lobster Boat","Free","10 a.m.–noon","Cohasset Harbor, near the Government Island dock","Santa and Mrs. Claus come in by boat, followed by treats and photos.",1],
+["2026-11-28",,"Cohasset","Santa Arrives by Lobster Boat","Free","10 a.m.–noon","Government Island and the sailing club area, Cohasset Harbor","Santa and Mrs. Claus come in by boat, followed by treats and photos. Hosted by the South Shore Community Center; photos with Santa for a $5 donation.",0],
 ["2026-11-28",,"Hull","Hull Holiday Showcase","Free","11 a.m.–4 p.m.","Nantasket Beach Resort, 45 Hull Shore Drive","The Hull Nantasket Chamber's Small Business Saturday market of local gifts, coastal art, crafts and decorations.",0],
 ["2026-11-28",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–1 p.m.","Downtown Hingham","Horse-drawn hayrides, part of the Hingham Downtown Association's month-long Hingham for the Holidays.",0],
 ["2026-11-28",,"Brockton","40th Annual Holiday Parade & Festival of Lights","Free","Noon–6 p.m.; parade at 2 p.m.; City Hall lights at 5 p.m.","Parade steps off from 72 Belmont St.","Floats, food trucks, ice skating and photos with Santa downtown.",0,"n"],
-["2026-11-29",,"Duxbury","21st Annual Holly Days","Free","1–4 p.m.","Village centers across town; trolleys connect the stops","Shopping, performances, crafts and treats. The Art Complex Museum adds a student concert, printmaking, cocoa and an elf seek-and-find from 1 to 3 p.m. The Rotary Festival of Lights is on the Town Green the same day.",0],
+["2026-11-29",,"Duxbury","21st Annual Holly Days","Free","1–4 p.m.","Village centers across town; trolleys connect the stops","The Duxbury Chamber of Commerce's afternoon of local shopping, performances, crafts and treats. The Art Complex Museum adds a student concert, printmaking, cocoa and an elf seek-and-find from 1 to 3 p.m. The Rotary Festival of Lights is on the Town Green the same day, 3–5 p.m.",0],
 ["2026-11-29",,"Quincy","73rd Annual Christmas Parade","Free","Noon to about 3:30 p.m.","Hancock St. and Walter J. Hannon Pkwy. to North Quincy High School","Theme: \"Stars and Stripes & Christmas Lights; Quincy Celebrates 250 Years.\"",0,"n"],
-["2026-11-29",,"Cohasset","South Shore Merry Market","Ticketed","10 a.m.–3 p.m.","Red Lion Inn Barn, 71 South Main St.","More than 50 local vendors, holiday music and Santa. Ticket proceeds benefit A Place to Rise.",1],
-["2026-12-03",,"Abington","Green Wave Junior Class Auction","","6–9 p.m.","Abington High School cafeteria, 201 Gliniewicz Way","The Class of 2028's fundraiser opens the Abington Celebrates Christmas Weekend.",0],
+["2026-11-29",,"Cohasset","South Shore Merry Market","Ticketed ($12; $25 family)","10 a.m.–3 p.m.","Red Lion Inn Barn, 71 South Main St.","More than 50 local vendors, holiday music and Santa. Ticket proceeds benefit A Place to Rise. Single tickets required for ages 12 and up.",0],
+["2026-12-03",,"Abington","Green Wave Junior Class Auction","","6–9 p.m.","Abington Middle School cafeteria, 201 Gliniewicz Way","Open to the public. The Class of 2028's fundraiser opens the Abington Celebrates Christmas Weekend.",0],
 ["2026-12-03",,"Duxbury","Holiday Jazz with the Donna Byrne Quartet","Ticketed","7–8:30 p.m.","Raw Bar at Island Creek Oyster, 403 Washington St.","South Shore Conservatory's Duxbury Music Festival preview. 90 general-admission seats; food and drinks sold separately.",0],
-["2026-12-03","2026-12-06","Braintree","Festival of Trees","","Opens Thursday 5–8 p.m.; runs through Sunday","Braintree Town Hall, 1 JFK Memorial Drive","More than 50 decorated trees raffled off, with music and refreshments.",1,"n"],
-["2026-12-04",,"Weymouth","Southeastern Philharmonic Symphonic Christmas Concert","","7:30 p.m. (expected)","Sanctuary Hall, East Weymouth Congregational Church, 1320 Commercial St.","The community orchestra, playing on the South Shore since 1914, with carols, seasonal favorites and usually a visit from Santa.",1],
+["2026-12-03","2026-12-06","Braintree","Festival of Trees","Ticketed ($5; 4 and under free)","Opens Thursday 5–8 p.m.; runs through Sunday","Braintree Town Hall, 1 JFK Memorial Drive","More than 50 decorated trees raffled off, with music and refreshments. Festive Friday night is $25.",0,"n"],
+["2026-12-04",,"Weymouth","Southeastern Philharmonic Symphonic Christmas Concert","Ticketed ($20; $30 family)","7:30 p.m.","East Weymouth Congregational Church, 1320 Commercial St.","The community orchestra, playing on the South Shore since 1914, with carols and seasonal favorites. Advance tickets through Zeffy.",0],
 ["2026-12-04",,"Abington","Annual Ugly Sweater Party","Ticketed ($25)","7–11 p.m.","Abington American Legion, 1027 Washington St.","The Abington Lions host DJ music, dancing, games, prizes and a dessert table. Cash bar. Reserve at abingtonmalions@gmail.com.",0],
+["2026-12-04",,"Hanover","Four Corners Winter Festival","","5:30–8:30 p.m.","Hanover Four Corners","The Hanover Historical Society displays its holiday carriage and historical collection across from St. Andrew's Church. Bring a new, unwrapped toy for Toys for Tots.",0],
 ["2026-12-04",,"Hingham","Christmas in the Square","Free","5–8 p.m.; Santa arrives by fire truck at 6:30 p.m.","Hingham Square","Candy canes, food trucks, a DJ, student performances and late shopping. Expect road closures downtown.",0],
-["2026-12-04",,"Plymouth","Holiday Stroll: Tree & Menorah Lighting","Free","Lighting at 5 p.m.; festivities from late afternoon","Town Hall and the downtown waterfront","Night one of the three-day stroll and the first night of Hanukkah, with harbor luminaria, carolers and late shopping.",1],
-["2026-12-04","2026-12-05","Scituate","Holidays in the Harbor","Free","Friday morning through 5 p.m. Saturday","Scituate Harbor and Front Street","Santa and Mrs. Claus, carriage rides, the lobster-trap tree, wreath and gingerbread displays, plus harbor shopping and dining.",1],
+["2026-12-04",,"Plymouth","Holiday Stroll: Tree & Menorah Lighting","Free","Starts at 5 p.m. with the lighting","Town Hall and the downtown waterfront","Night one of the three-day stroll and the first night of Hanukkah: the town tree and menorah lighting, Santa, live music, light displays and late shopping.",0],
+["2026-12-04","2026-12-05","Scituate","Holidays in the Harbor","Free","Fri from 4 p.m.; Santa arrives Sat 10 a.m.","Scituate Harbor and Front Street","Santa and Mrs. Claus, Clydesdale carriage rides, the Lobster Trap Tree by the Reel Harbor Theater patio, a Flying Santa visit, a wreath contest, gingerbread displays and silent auctions, plus shopping and dining specials. Fri: Joye Rides 4–6:30 p.m. from The Reel steps; elementary chorus 4:30; Gates Band 5:30; Lobster Trap Tree lighting 5:45. Sat: Santa arrives by boat at the town dock at 10 a.m.",0],
 ["2026-12-04","2026-12-06","Whitman","7th Annual Decorate for Scholars Tree Lighting & Vendor Event","Free","Park: Fri 4:30–7:30, Sat 3–8, Sun 4:30–7:30. Vendors: Fri and Sat only","Whitman Town Park, 141 Whitman Ave., and Town Hall","Decorated trees in the park, 30+ vendors in Town Hall, live entertainment and food trucks. Santa and face painting Saturday only. Proceeds fund Class of 2027 scholarships.",0],
 ["2026-12-05",,"East Bridgewater","Christmas Parade","Free","Steps off at 10 a.m., rain or shine","Spring Street","Theme: \"A Very Merry North Pole Christmas.\"",0],
 ["2026-12-05",,"Bridgewater","Christmas Parade","Free","4:30 p.m.","Main Street","Hosted by Dynamic Aviation. Theme: \"Christmas on Main Street.\"",0,"n"],
-["2026-12-05",,"Hanson","Hanson Holiday Fest","Free","Late afternoon, with fireworks","Hanson Town Hall Green, 542 Liberty St. (traditional site)","The Hanson Holiday Committee's family festival. Donations go to the fireworks.",1],
+["2026-12-05",,"Hanson","Hanson Holiday Fest","Free","4–7 p.m.","Hanson Town Hall, 542 Liberty St.","The Hanson Holiday Committee's family festival. Free food samples from town restaurants, giveaways, photo ops, the tree lighting, music and a Girl Scouts reindeer-food craft. Fireworks have closed the night in past years.",0],
 ["2026-12-05",,"Abington","Christmas at Island Grove","Free","3–6 p.m.; Santa 3:15; bandstand lighting 5:30","Island Grove Park, 200 Park Ave.","Santa and Mrs. Claus in the Gingerbread Cabin, hayrides, a bandstand train display, carolers, cocoa, reindeer games and a 6-foot teddy bear raffle. This year's lighting honors Abington Veterans Services.",0],
 ["2026-12-05",,"Abington","Breakfast with Santa","Ticketed ($5; under 5 free)","9 a.m.–noon","Abington Senior Center, 441 Summer St.","Hosted by the Friends of Abington Seniors.",0],
 ["2026-12-05",,"Abington","Garden Club Annual Winter Fair","Free","10 a.m.–2 p.m.","United Church of Christ, 10 Bedford St.","Fresh greens baskets, vendors, a bake sale and raffles.",0],
@@ -244,24 +258,24 @@ const E=[
 ["2026-12-05",,"Pembroke","Tree Lighting on the Green","Free (gingerbread kits $30)","2–5 p.m.","Pembroke Town Green and Community Center","Cocoa, marshmallow roasting, cookie decorating, ornament making and letters to Santa. A Golden Ticket child rides with Santa on the fire truck.",0],
 ["2026-12-05",,"Weymouth","Christmas Tree Lighting & Holiday Festival","Free","4–6:30 p.m.","Weymouth Town Hall, 75 Middle St.","",0],
 ["2026-12-05",,"Hull","Lobster Trap Tree Lighting","Free","Photos 3:30; ceremony 4; Santa by fire truck 4:15; lighting at dusk","Mariner's Park","Hull's coastal tree lighting, with singing, cookies and cocoa.",0],
-["2026-12-05",,"Marshfield","Molly Fund Tree Lighting","Free","From 4 p.m.; lighting at dusk","Dandelion Park, 1896 Ocean St.","Santa, carols, cocoa and cookies.",1],
+["2026-12-05",,"Marshfield","Molly Fund Tree Lighting","Free","From 4 p.m.; lighting at dusk","Dandelion Park, 1896 Ocean St.","Santa, carols, cocoa and cookies.",0],
 ["2026-12-05",,"Hingham","Community Chanukah Menorah Lighting","Free","5–7 p.m.","Hingham Community Center, 70 South St.","Cocoa, doughnuts, dreidels and gelt on the second night of Hanukkah, with activities inside afterward.",0],
 ["2026-12-05",,"Plymouth","Santa on Main Street & Light the Night","Free","Santa photos 1–4 p.m.; lighting at 5 p.m.","Main Street and Brewster Gardens","Day two of the Holiday Stroll. The Brewster Gardens light trail then glows nightly through Dec. 31.",0],
-["2026-12-05",,"Braintree","Santa, Holiday Stroll & Tree Lighting","","3–7 p.m.; tree lighting at 5 p.m.","Braintree Firehouse to Town Hall","Santa at the firehouse, a stroll to Town Hall, the tree lighting and Touch-a-Truck.",1,"n"],
+["2026-12-05",,"Braintree","Santa, Holiday Stroll & Tree Lighting","Free","3–7 p.m.; tree lighting at 5 p.m.","Braintree Firehouse to Town Hall","Santa at the firehouse, a stroll to Town Hall, the tree lighting and Touch-a-Truck. The indoor Festival of Trees is $5.",0,"n"],
 ["2026-12-05","2026-12-06","Abington","Olde Town Christmas House Tour","Ticketed ($40–$45)","Sat 5–8:30 p.m.; Sun noon–4 p.m.","Four decorated homes; addresses come with tickets","Ages 12 and up. Tickets at abingtonma.myrec.com. Benefits the Arnold Park Revitalization Project.",0],
-["2026-12-05","2026-12-06","Duxbury","The Nutcracker","Ticketed","1 p.m. both days","Duxbury Performing Arts Center, 73 Alden St.","South Shore Conservatory's School of Dance stages the full ballet.",0],
+["2026-12-05","2026-12-06","Duxbury","The Nutcracker","Ticketed ($13–$28)","1 p.m. both days","Duxbury Performing Arts Center, 73 Alden St.","South Shore Conservatory's School of Dance stages the full ballet. $28 adults, $13 ages 5–18, free under 5.",0],
 ["2026-12-05",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
-["2026-12-06",,"Whitman","Southeastern Philharmonic Holiday Concert","Free","2:30 p.m.","Whitman Town Hall, 54 South Ave.","Carols and seasonal favorites. Donations for the Whitman Food Pantry welcome.",1],
+["2026-12-06",,"Whitman","Southeastern Philharmonic Holiday Concert","Free","2:30 p.m.","Whitman Town Hall, 54 South Ave.","Carols and seasonal favorites. Donations for the Whitman Food Pantry welcome.",0],
 ["2026-12-06",,"Whitman","11th Annual Stuff a Cruiser & Ambulance Toy Drive","Bring a toy","9 a.m.–1 p.m.","Whitman Police lot, 20 Essex St.","Police and Fire collect gifts and gift cards for the Whitman Area Toy Drive.",0],
-["2026-12-06",,"Scituate","Snowflake Fair","Free","9 a.m.–2 p.m.","","",1],
+["2026-12-06",,"Scituate","Snowflake Fair","Free","9 a.m.–2 p.m.","First Parish Unitarian Universalist Church, 330 First Parish Road","",0],
 ["2026-12-06",,"Abington","Pup Pics with Santa","Ticketed ($20)","10 a.m.–1 p.m.","Gingerbread Cabin, Island Grove, 200 Park Ave.","A Friends of Abington Dog Park fundraiser. Dogs must be leashed.",0],
 ["2026-12-06",,"Abington","Winter Wonderland Craft Fair","Free","11 a.m.–3 p.m.","Knights of Columbus, 254 Hancock St.","Hosted by the Abington Vendor Group.",0],
 ["2026-12-06",,"Abington","A Christmas Concert","Free","3 p.m.","United Church of Christ, 10 Bedford St.","The Abington Town Christmas Choir under Doug Ulwick, with solos and a carol sing-along. Good-will offering accepted.",0],
 ["2026-12-06",,"Hull","Flying Santa","Free","10:45 a.m., weather permitting","Hull Lifesaving Museum, 1117 Nantasket Ave.","Santa lands by helicopter. The museum's Christmas Sales Day is the same day.",0],
-["2026-12-06",,"Plymouth","Holiday Stroll Day Three & Cookie Trail","Free (Cookie Trail ticketed)","Cookie Trail 11 a.m.–4 p.m.","Downtown Plymouth businesses","Last year's first Cookie Trail sold out quickly.",1],
+["2026-12-06",,"Plymouth","Holiday Stroll Day Three & Cookie Trail","Free (Cookie Trail sold out)","Cookie Trail 11 a.m.–4 p.m.","Downtown Plymouth businesses","The Cookie Trail is sold out; the downtown stroll continues.",0],
 ["2026-12-06",,"Quincy","General's Bridge and Park Tree Lighting","Free","5 p.m.","General's Bridge and Park","A lighting that honors active-duty military members.",0,"n"],
 ["2026-12-11",,"Scituate","Holidays in the Village","Free","4–7 p.m.","North Scituate Village","An elf scavenger hunt, photos with Santa, kids' crafts and carriage rides.",0],
-["2026-12-11",,"Cohasset","Cohasset Christmas Stroll","Free","3–8 p.m. (permit window)","Cohasset Village","Caroling, live music and Santa through the village.",1],
+["2026-12-12",,"Cohasset","Cohasset Village Holiday Stroll","Free","4:30–7:30 p.m.","Cohasset Village","The Cohasset Chamber of Commerce's annual stroll, with food, drinks, live music, caroling, Santa and a holiday raffle.",0],
 ["2026-12-12",,"Weymouth","Christmas in Columbian Square","Free","4–6:30 p.m.","Columbian Square, South Weymouth","",0],
 ["2026-12-12",,"Halifax","Holidays in Halifax Tree Lighting","Free","5–8 p.m. (rain date Dec. 13)","Halifax town center","The 29th annual town celebration and tree lighting.",0],
 ["2026-12-12",,"Hingham","Miracle on Main Street Live Nativity","Free (bring a food item)","3–7 p.m., rain or shine","South Shore Baptist Church, 578 Main St.","An interactive Bethlehem marketplace with a petting zoo, crafts, food trucks and a photo booth. Food donations go to the Hingham Food Pantry.",0],
@@ -269,22 +283,22 @@ const E=[
 ["2026-12-12","2026-12-19","Hull","Winter Wonderland Festival of Trees","Ticketed ($10–$20)","10 a.m.–4 p.m. daily","Windmill Point Boathouse, 185 Main St.","30+ decorated trees, later donated to veterans and their families.",0],
 ["2026-12-12","2026-12-13","Weymouth","The Nutcracker","Ticketed","Sat 1 & 5 p.m.; Sun 1 p.m.","Chapman Theater","South Shore Ballet Theatre & Wellness, with 63 local dancers.",0],
 ["2026-12-12","2026-12-13","Plymouth","Plymouth Philharmonic: Hometown Holiday","Ticketed ($40–$150)","Sat 3 & 7:30 p.m.; Sun 1 & 5 p.m.","Plymouth Memorial Hall, 83 Court St.","Orchestra, chorus, tenor Matthew Anderson, Messiah selections and an \"Auld Lang Syne\" sing-along.",0],
-["2026-12-12","2026-12-13","Duxbury","Snug Harbor Community Chorus","Ticketed","Sat 7:30 p.m. at Duxbury PAC; Sun 2 p.m. at South Shore Conservatory","Duxbury","The chorus's annual pair of holiday concerts.",1],
-["2026-12-12",,"Abington","Fill-a-Cruiser Toy Drive","Bring a toy","10 a.m.–3 p.m.","Walmart","Abington Police collect new, unwrapped toys.",1],
+["2026-12-12","2026-12-13","Duxbury","Snug Harbor Community Chorus","Ticketed ($25; under 10 free)","Sat 7:30 p.m. at Duxbury PAC; Sun 2 p.m. at South Shore Conservatory","Duxbury","The chorus's annual pair of holiday concerts.",0],
+["2026-12-12",,"Abington","Fill-a-Cruiser Toy Drive","Bring a toy","10 a.m.–3 p.m.","Walmart, 777 Brockton Ave.","Abington Police collect new, unwrapped toys. Earlier, Santa and Sirens rides through town from 8 a.m., with a 9–9:30 a.m. Arnold Park stop and helicopter candy drop (weather permitting).",0],
 ["2026-12-12",,"Hingham","Holly Jolly Clydesdale Hayrides","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
-["2026-12-12","2026-12-20","Middleborough","Christmas at the Oliver Estate","","Dec. 12, 13, 19 & 20, 4:30–7:30 p.m.","445 Plymouth St.","",1,"n"],
-["2026-12-13",,"East Bridgewater","Celebrate the Season with Black Santa","","10 a.m.–3 p.m.","East Bridgewater Council on Aging","",1],
-["2026-12-13",,"Scituate","South Shore Holiday Pops","Ticketed (from $33)","3–5 p.m.","Scituate Performing Arts Center, 606 Chief Justice Cushing Hwy.","The Atlantic Symphony Orchestra plays Sleigh Ride and seasonal favorites, with a family sing-along and a North Pole guest.",0],
+["2026-12-12","2026-12-20","Middleborough","Christmas at the Oliver Estate","Ticketed ($5; 4 and under free)","Dec. 12, 13, 19 & 20, 4:30–7:30 p.m.","445 Plymouth St.","Free shuttle from Middleborough Town Hall.",0,"n"],
+["2026-12-13",,"East Bridgewater","Celebrate the Season with Black Santa","Free","10 a.m.–3 p.m.","Sachem Rock, 355 Plymouth St.","A free professional digital photo with Santa, plus crafts and sweets.",0],
+["2026-12-13",,"Scituate","South Shore Holiday Pops","Ticketed ($33–$60)","3–5 p.m.","Scituate Performing Arts Center, 606 Chief Justice Cushing Hwy.","The Atlantic Symphony Orchestra plays Sleigh Ride and seasonal favorites, with a family sing-along and a North Pole guest. Senior and under-18 discounts.",0],
 ["2026-12-13",,"Hingham","Holiday Guitar Concert with John Muratore","Free","3–4 p.m.","Hingham Public Library, Whiton Room","",0],
 ["2026-12-15","2026-12-16","Norwell","Holidays with the Divas","Ticketed ($32–$34)","7:30 p.m. both nights","The Company Theatre, 30 Accord Park Drive","Holiday standards, cabaret style.",0],
 ["2026-12-19",,"Marshfield","Winter Farmers' Market","Free","10 a.m.–1 p.m.","Marshfield Fairgrounds grandstand, Gate A, 140 Main St.","About 20 farms, chefs and artisans indoors, with live music and kids' activities.",0],
 ["2026-12-19",,"Kingston","Kingston Luminaries","Free","5–8:30 p.m.","Townwide; tree lighting on the Town Green","Streets lined with luminaria, caroling, and open houses at the Surprize Hose House, Reed Center and library.",0],
 ["2026-12-19",,"Hingham","Last Clydesdale Hayrides of the Season","Free","11 a.m.–2 p.m.","Downtown Hingham","",0],
-["2026-12-20",,"Hingham","Candlelight Christmas Concert","","4 p.m.","New North Church","South Shore Conservatory faculty and students.",1],
+["2026-12-20",,"Hingham","Candlelight Christmas Concert","Free (in past years)","4 p.m.","New North Church, 1 Lincoln St.","South Shore Conservatory faculty and students. A wassail reception has followed in past years.",1],
 ["2026-12-20",,"Scituate","Lawson Tower Christmas Bell Concert","Free","6 p.m.","Lawson Tower","Carols rung on the historic tower's bells.",0],
-["2026-12-26",,"Plymouth","Dueling Pianos, Holiday Edition","Ticketed","Evening","Uva Wine Bar","",1],
-["2026-12-31",,"Plymouth","Christine Hurley & Friends: A NYE Celebration","Ticketed","New Year's Eve","The Spire Center for Performing Arts","",1],
-["2027-01-01",,"Duxbury","New Year's Day Polar Plunge","Registration fee","New Year's Day","Duxbury Beach","The Duxbury Education Foundation's fundraising plunge.",1],
+["2026-12-26",,"Plymouth","Dueling Pianos, Holiday Edition","Standing room $10","Doors 6 p.m.; show 7–10 p.m.","Uva Wine Bar","Advance seats are sold out; $10 standing-room tickets at the door.",0],
+["2026-12-31",,"Plymouth","Christine Hurley & Friends: A NYE Celebration","Ticketed ($35.50–$39)","Doors 6:30 p.m.; show 7:30 p.m.","The Spire Center for Performing Arts","",0],
+["2027-01-01",,"Duxbury","New Year's Day Polar Plunge","$30 donation","New Year's Day (last year: registration 10:30 a.m., plunge 11 a.m.)","Duxbury Beach","The Duxbury Education Foundation's fundraising plunge. Register online ahead or pay cash or Venmo at the beach.",1],
 ["2026-11-27","2026-12-30","Marshfield","South Shore Celebration of Lights","Ticketed ($22.99–$35 per car)","Selected nights, 5–9 p.m.","Marshfield Fairgrounds, Gate E, 62 South River St.","A mile-plus drive-through with over a million LEDs and a 300-foot light tunnel. Buy online; sold-out sessions have no gate sales.",0],
 ["2026-11-27","2026-12-27","Carver","Edaville's Winter Wonderland","Ticketed ($38)","Fri 4–9, Sat 2–9, Sun 3–7:30; closed Dec. 25","5 Pine St., Carver","Train through the lights, skating, carriage and pony rides, a petting zoo and Santa.",0,"n"],
 ["2026-11-27","2026-12-20","Norwell","Disney's Frozen","Ticketed ($62–$69)","Fri 7:30 p.m.; Sat & Sun 3 p.m.","The Company Theatre, 30 Accord Park Drive","The Broadway musical with an adult cast.",0],
@@ -320,27 +334,32 @@ const sel=$("town");
 sel.innerHTML='<option value="">All towns</option><optgroup label="South Shore">'+CORE.map(t=>`<option>${t}</option>`).join("")+'</optgroup><optgroup label="Nearby">'+nearby.map(t=>`<option>${t}</option>`).join("")+"</optgroup>";
 $("townList").innerHTML=CORE.concat(nearby).map(t=>`<option value="${t}">`).join("");
 const coreCount=E.filter(e=>CORE.includes(e.town)).length;
-$("stats").innerHTML=`<span><b>${E.length}</b>events</span><span><b>${new Set(E.filter(e=>CORE.includes(e.town)).map(e=>e.town)).size}</b>South Shore towns</span><span><b>${E.filter(e=>/^Free/.test(e.cost)).length}</b>free to attend</span>`;
+const up=E.filter(e=>D(e.e)>=today);
+$("stats").innerHTML=`<span><b>${up.length}</b>upcoming events</span><span><b>${new Set(E.filter(e=>CORE.includes(e.town)).map(e=>e.town)).size}</b>South Shore towns</span><span><b>${up.filter(e=>/^Free/.test(e.cost)).length}</b>free to attend</span>`;
 
 let view="date";
 try{const v=localStorage.getItem("ssn-view");if(v)view=v;const t=localStorage.getItem("ssn-town");if(t&&[...sel.options].some(o=>o.value===t))sel.value=t}catch(_){}
 if(location.hash==="#by-town")view="town";else if(location.hash==="#by-weekend")view="date";
 
+const isPast=e=>D(e.e)<today;
+const isNow=e=>D(e.s)<=today&&D(e.e)>=today;
 function dateBox(e){const d=D(e.s);const multi=e.e!==e.s;
  return `<div class="dt"><small>${DOW[d.getDay()].slice(0,3)}</small><b>${d.getDate()}</b><small>${MON[d.getMonth()].replace(".","")}</small>${multi?`<em>to ${short(e.e).replace(MON[d.getMonth()]+" ","")}</em>`:""}</div>`}
 function costPill(c){if(!c)return"";const k=/^Free/.test(c)?"free":/^Ticketed|Registration/.test(c)?"paid":"";return `<span class="pill ${k}">${esc(c)}</span>`}
 function card(e,showTown){
- const past=new Date(D(e.e))<today;
- return `<article class="ev${past?" past":""}">${dateBox(e)}<div><h3>${esc(e.title)}</h3><div class="meta">${showTown?`<span class="pill town">${esc(e.town)}${e.flag==="n"?" · nearby":""}</span>`:""}${costPill(e.cost)}</div>
+ const past=isPast(e),now=isNow(e);
+ return `<article class="ev${past?" past":""}">${dateBox(e)}<div><h3>${esc(e.title)}</h3><div class="meta">${showTown?`<span class="pill town">${esc(e.town)}${e.flag==="n"?" · nearby":""}</span>`:""}${now?`<span class="pill now">${e.s===e.e?"Today":"On now"}</span>`:""}${past?'<span class="pill over">Ended</span>':""}${costPill(e.cost)}</div>
  <p class="when">${esc(e.when)}${e.e!==e.s?` · ${short(e.s)}–${short(e.e)}`:""}</p>${e.where?`<p class="where">${esc(e.where)}</p>`:""}${e.desc?`<p class="desc">${esc(e.desc)}</p>`:""}${e.tbc?'<p class="tbc">Some details still being confirmed</p>':""}</div></article>`}
 function filtered(){
- const q=$("q").value.trim().toLowerCase(),t=sel.value,f=$("free").checked;
- return E.filter(e=>(!t||e.town===t)&&(!f||/^Free/.test(e.cost))&&(!q||(e.title+" "+e.town+" "+e.desc+" "+e.where).toLowerCase().includes(q)))
+ const q=$("q").value.trim().toLowerCase(),t=sel.value,f=$("free").checked,sp=$("past").checked;
+ return E.filter(e=>(sp||!isPast(e))&&(!t||e.town===t)&&(!f||/^Free/.test(e.cost))&&(!q||(e.title+" "+e.town+" "+e.desc+" "+e.where).toLowerCase().includes(q)))
   .sort((a,b)=>a.s.localeCompare(b.s)||a.town.localeCompare(b.town))}
 function render(){
  $("vDate").setAttribute("aria-pressed",view==="date");$("vTown").setAttribute("aria-pressed",view==="town");
  const list=filtered();let html="",jump="";
- if(!list.length){$("out").innerHTML='<p class="empty">No events match. Try another town or clear the search, or submit one we missed.</p>';$("jump").innerHTML="";return}
+ const hidden=$("past").checked?0:E.filter(isPast).length;
+ const pastNote=hidden?`<p class="note">${hidden} past event${hidden>1?"s are":" is"} hidden. <a href="#" id="showPast">Show them</a></p>`:"";
+ if(!list.length){$("out").innerHTML='<p class="empty">No upcoming events match. Try another town or clear the search, or submit one we missed.</p>'+pastNote;$("jump").innerHTML="";bindPast();return}
  if(view==="date"){
   for(const g of GROUPS){const items=list.filter(e=>groupOf(e)===g.k);if(!items.length)continue;
    jump+=`<a href="#g-${g.k}">${g.name}</a>`;
@@ -356,11 +375,12 @@ function render(){
    html+=`<section class="group" id="t-${slug}"><header><h2>${esc(t)}</h2><span class="sub">${CORE.includes(t)?"":"Nearby · "}${items.length} event${items.length>1?"s":""}</span></header><div class="list">${items.map(e=>card(e,false)).join("")}</div></section>`}
   const missing=sel.value?[]:CORE.filter(t=>!ts.includes(t));
   if(missing.length&&!$("q").value&&!$("free").checked)html+=`<p class="note">Still waiting on 2026 dates from: ${missing.join(", ")}. Know something? Submit it below.</p>`}
- $("out").innerHTML=html;$("jump").innerHTML=jump}
+ $("out").innerHTML=html+pastNote;$("jump").innerHTML=jump;bindPast()}
+function bindPast(){const a=$("showPast");if(a)a.onclick=ev=>{ev.preventDefault();$("past").checked=true;render()}}
 function setView(v){view=v;try{localStorage.setItem("ssn-view",v)}catch(_){}history.replaceState(null,"",v==="town"?"#by-town":"#by-weekend");render()}
 $("vDate").onclick=()=>setView("date");$("vTown").onclick=()=>setView("town");
 sel.onchange=()=>{try{localStorage.setItem("ssn-town",sel.value)}catch(_){}render()};
-$("q").oninput=render;$("free").onchange=render;
+$("q").oninput=render;$("free").onchange=render;$("past").onchange=render;
 addEventListener("hashchange",()=>{if(location.hash==="#by-town"&&view!=="town"){view="town";render()}else if(location.hash==="#by-weekend"&&view!=="date"){view="date";render()}});
 render();
 
